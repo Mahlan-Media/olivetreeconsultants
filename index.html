@@ -1,220 +1,848 @@
-export default function OliveTreeConsultantsHomepage() {
-  return (
-    <div className="min-h-screen bg-[#f7ebd6] text-[#202312] overflow-x-hidden">
-      <header className="sticky top-0 z-50 border-b border-[#dccca7]/70 bg-[#f7ebd6]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <div>
-            <div className="text-2xl font-semibold tracking-[0.18em] uppercase">Olive Tree Consultants</div>
-            <div className="text-sm text-[#202312]/70">Fort Wayne, Indiana</div>
-          </div>
-          <nav className="hidden gap-8 text-sm font-medium md:flex">
-            <a href="#services" className="transition hover:opacity-70">Services</a>
-            <a href="#about" className="transition hover:opacity-70">About</a>
-            <a href="#approach" className="transition hover:opacity-70">Approach</a>
-            <a href="#contact" className="transition hover:opacity-70">Contact</a>
-          </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olive Tree Consultants | Fort Wayne, Indiana</title>
+  <meta
+    name="description"
+    content="Olive Tree Consultants is a Fort Wayne, Indiana consulting firm led by Adam Dircksen, specializing in educational consulting and corporate consulting."
+  />
+  <style>
+    :root {
+      --forest: #202312;
+      --sand: #dccca7;
+      --cream: #f7ebd6;
+      --white: #fffdf8;
+      --shadow: rgba(32, 35, 18, 0.12);
+      --shadow-strong: rgba(32, 35, 18, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest);
+      background:
+        radial-gradient(circle at top left, rgba(220, 204, 167, 0.85), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(32, 35, 18, 0.08), transparent 30%),
+        linear-gradient(180deg, var(--cream) 0%, #f3e4ca 100%);
+      overflow-x: hidden;
+    }
+
+    .page-wrap {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .floating-leaf,
+    .floating-leaf::before,
+    .floating-leaf::after {
+      position: absolute;
+      border-radius: 100% 0 100% 0;
+      background: rgba(32, 35, 18, 0.08);
+      pointer-events: none;
+      filter: blur(0.2px);
+    }
+
+    .floating-leaf {
+      width: 90px;
+      height: 90px;
+      top: 110px;
+      right: 8%;
+      transform: rotate(18deg);
+      animation: drift 10s ease-in-out infinite;
+    }
+
+    .floating-leaf::before {
+      content: "";
+      width: 64px;
+      height: 64px;
+      top: 160px;
+      right: 170px;
+      transform: rotate(-28deg);
+      animation: drift 12s ease-in-out infinite reverse;
+    }
+
+    .floating-leaf::after {
+      content: "";
+      width: 48px;
+      height: 48px;
+      top: 360px;
+      right: 40px;
+      transform: rotate(32deg);
+      animation: drift 14s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) rotate(18deg); }
+      50% { transform: translateY(-16px) rotate(24deg); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(247, 235, 214, 0.85);
+      border-bottom: 1px solid rgba(32, 35, 18, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--forest);
+      font-size: 0.95rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--forest);
+      transition: width 0.28s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      padding: 92px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-intro,
+    .service-card,
+    .about-panel,
+    .approach-card,
+    .contact-box {
+      animation: fadeUp 0.85s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(32, 35, 18, 0.08);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.83rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 25px rgba(32, 35, 18, 0.05);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 5vw, 5.1rem);
+      line-height: 0.98;
+      margin: 22px 0 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy p {
+      font-size: 1.14rem;
+      line-height: 1.9;
+      max-width: 760px;
+      color: rgba(32, 35, 18, 0.8);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 30px 0 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      padding: 14px 24px;
+      text-decoration: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      color: var(--cream);
+      box-shadow: 0 18px 35px rgba(32, 35, 18, 0.16);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.46);
+      color: var(--forest);
+      border: 1px solid rgba(32, 35, 18, 0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.46);
+      border: 1px solid rgba(32, 35, 18, 0.08);
+      border-radius: 26px;
+      padding: 24px 22px;
+      box-shadow: 0 14px 35px rgba(32, 35, 18, 0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: rgba(32, 35, 18, 0.72);
+      font-size: 0.96rem;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 18px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(32, 35, 18, 0.08);
+      box-shadow: 0 25px 50px rgba(32, 35, 18, 0.1);
+    }
+
+    .hero-card-inner {
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border-radius: 26px;
+      background: rgba(255, 253, 248, 0.78);
+      border: 1px solid rgba(32, 35, 18, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .tree-wrap {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 360px;
+      padding: 28px 16px;
+    }
+
+    .tree-icon {
+      position: relative;
+      width: 220px;
+      height: 250px;
+      margin: 0 auto 24px;
+      animation: sway 7s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    .trunk {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 110px;
+      background: var(--forest);
+      border-radius: 20px;
+    }
+
+    .branch {
+      position: absolute;
+      background: var(--forest);
+      border-radius: 20px;
+      transform-origin: center left;
+    }
+
+    .branch.left {
+      width: 74px;
+      height: 10px;
+      left: 55px;
+      bottom: 115px;
+      transform: rotate(-34deg);
+    }
+
+    .branch.right {
+      width: 74px;
+      height: 10px;
+      right: 55px;
+      bottom: 115px;
+      transform: rotate(34deg);
+      transform-origin: center right;
+    }
+
+    .leaf {
+      position: absolute;
+      background: var(--forest);
+      border-radius: 100% 0 100% 0;
+      box-shadow: 0 10px 20px rgba(32, 35, 18, 0.08);
+    }
+
+    .leaf.l1 { width: 68px; height: 68px; top: 26px; left: 42px; transform: rotate(-30deg); }
+    .leaf.l2 { width: 72px; height: 72px; top: 16px; right: 42px; transform: rotate(28deg); }
+    .leaf.l3 { width: 62px; height: 62px; top: 72px; left: 18px; transform: rotate(-18deg); }
+    .leaf.l4 { width: 62px; height: 62px; top: 72px; right: 18px; transform: rotate(18deg); }
+    .leaf.l5 { width: 56px; height: 56px; top: 0; left: 82px; transform: rotate(-8deg); }
+    .leaf.l6 { width: 56px; height: 56px; top: 0; right: 82px; transform: rotate(8deg); }
+    .leaf.l7 { width: 64px; height: 64px; top: 108px; left: 74px; transform: rotate(-4deg); }
+    .leaf.l8 { width: 64px; height: 64px; top: 108px; right: 74px; transform: rotate(4deg); }
+
+    .tree-wrap h2 {
+      font-size: 2rem;
+      margin: 6px 0 10px;
+    }
+
+    .tree-wrap p {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.8;
+      color: rgba(32, 35, 18, 0.75);
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-tag {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(32, 35, 18, 0.58);
+      margin-bottom: 16px;
+    }
+
+    .section-intro h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.04;
+    }
+
+    .section-intro p {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.9;
+      color: rgba(32, 35, 18, 0.78);
+      font-size: 1.06rem;
+    }
+
+    .services-grid,
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-card,
+    .about-panel,
+    .approach-card {
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(32, 35, 18, 0.08);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 18px 40px rgba(32, 35, 18, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service-card:hover,
+    .approach-card:hover,
+    .contact-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(32, 35, 18, 0.1);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .pill.dark {
+      background: var(--forest);
+      color: var(--cream);
+    }
+
+    .pill.light {
+      background: var(--sand);
+      color: var(--forest);
+    }
+
+    .service-card h3,
+    .approach-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.7rem;
+    }
+
+    .service-card p,
+    .about-panel p,
+    .approach-card p,
+    .contact-box p,
+    .contact-meta {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.9;
+      color: rgba(32, 35, 18, 0.78);
+    }
+
+    .service-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(32, 35, 18, 0.82);
+    }
+
+    .service-list li {
+      padding: 10px 0;
+      border-top: 1px solid rgba(32, 35, 18, 0.08);
+    }
+
+    .about-band {
+      background: rgba(255, 255, 255, 0.28);
+      border-top: 1px solid rgba(32, 35, 18, 0.08);
+      border-bottom: 1px solid rgba(32, 35, 18, 0.08);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .approach-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .step-number {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(32, 35, 18, 0.58);
+      margin-bottom: 12px;
+    }
+
+    .contact-shell {
+      background: var(--forest);
+      color: var(--cream);
+      border-radius: 38px;
+      padding: 48px;
+      box-shadow: 0 28px 60px rgba(32, 35, 18, 0.16);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .contact-shell .section-tag,
+    .contact-shell p,
+    .contact-shell .contact-meta {
+      color: rgba(247, 235, 214, 0.78);
+    }
+
+    .contact-shell h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.06;
+    }
+
+    .contact-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(247, 235, 214, 0.12);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .contact-meta {
+      margin-bottom: 18px;
+    }
+
+    .contact-meta strong {
+      display: block;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-top: 4px;
+    }
+
+    .contact-shell .btn-primary {
+      background: var(--cream);
+      color: var(--forest);
+      box-shadow: none;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(32, 35, 18, 0.65);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .services-grid,
+      .about-layout,
+      .approach-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      nav ul {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 26px, 1180px);
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        justify-content: flex-start;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card-inner {
+        min-height: auto;
+        padding: 22px;
+      }
+
+      .tree-icon {
+        width: 190px;
+        height: 220px;
+      }
+
+      .contact-shell {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="floating-leaf"></div>
+
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-title">Olive Tree Consultants</div>
+          <div class="brand-sub">Fort Wayne, Indiana</div>
         </div>
-      </header>
+        <nav>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-      <section className="relative isolate">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(220,204,167,0.7),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(32,35,18,0.12),_transparent_30%)]" />
-        <div className="absolute right-0 top-0 h-[520px] w-[520px] rounded-full bg-[#dccca7]/40 blur-3xl" />
-        <div className="absolute left-[-80px] bottom-[-100px] h-[340px] w-[340px] rounded-full bg-[#202312]/10 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl gap-14 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-28">
-          <div className="flex flex-col justify-center">
-            <div className="mb-5 inline-flex w-fit items-center rounded-full border border-[#202312]/15 bg-white/40 px-4 py-2 text-sm text-[#202312]/80 shadow-sm backdrop-blur">
-              Communication. Leadership. Alignment.
-            </div>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
-              Helping schools and organizations grow stronger through clear communication and effective leadership.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#202312]/78">
-              Olive Tree Consultants is a Fort Wayne consulting firm led by Adam Dircksen, serving educational institutions and organizations with practical, research-informed strategies that strengthen people, teams, and long-term performance.
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Communication. Leadership. Alignment.</span>
+            <h1>Helping schools and organizations grow through clearer communication and stronger leadership.</h1>
+            <p>
+              Olive Tree Consultants is a professional consulting firm in Fort Wayne, Indiana, led by Adam Dircksen. Through educational consulting and corporate consulting, the firm helps clients improve teaching, leadership, team alignment, and long-term performance with practical, research-informed solutions.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#contact"
-                className="rounded-2xl bg-[#202312] px-6 py-3 text-sm font-semibold text-[#f7ebd6] shadow-lg shadow-[#202312]/15 transition hover:-translate-y-0.5"
-              >
-                Schedule a Consultation
-              </a>
-              <a
-                href="#services"
-                className="rounded-2xl border border-[#202312]/15 bg-white/50 px-6 py-3 text-sm font-semibold text-[#202312] shadow-sm transition hover:bg-white/75"
-              >
-                Explore Services
-              </a>
+            <div class="actions">
+              <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+              <a href="#services" class="btn btn-secondary">Explore Services</a>
             </div>
-
-            <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
-              <div className="rounded-3xl border border-[#202312]/10 bg-white/45 p-5 shadow-sm backdrop-blur">
-                <div className="text-2xl font-semibold">2</div>
-                <div className="mt-1 text-sm text-[#202312]/70">Specialized consulting areas</div>
+            <div class="stats">
+              <div class="stat">
+                <strong>2</strong>
+                <span>Focused consulting areas serving education and business.</span>
               </div>
-              <div className="rounded-3xl border border-[#202312]/10 bg-white/45 p-5 shadow-sm backdrop-blur">
-                <div className="text-2xl font-semibold">100%</div>
-                <div className="mt-1 text-sm text-[#202312]/70">Tailored client-centered approach</div>
+              <div class="stat">
+                <strong>Fort Wayne</strong>
+                <span>Professionally serving local and regional clients from Indiana.</span>
               </div>
-              <div className="rounded-3xl border border-[#202312]/10 bg-white/45 p-5 shadow-sm backdrop-blur">
-                <div className="text-2xl font-semibold">Fort Wayne</div>
-                <div className="mt-1 text-sm text-[#202312]/70">Serving local and regional clients</div>
+              <div class="stat">
+                <strong>Practical</strong>
+                <span>Designed to turn insight into measurable real-world improvement.</span>
               </div>
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center">
-            <div className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-[#202312]/10 bg-white/55 p-4 shadow-2xl shadow-[#202312]/10 backdrop-blur-xl">
-              <div className="rounded-[1.7rem] bg-[linear-gradient(180deg,#f7ebd6_0%,#dccca7_100%)] p-8">
-                <div className="rounded-[1.5rem] border border-[#202312]/10 bg-[#f7ebd6]/90 p-8 shadow-inner">
-                  <div className="mx-auto flex h-64 w-64 items-center justify-center rounded-full border border-[#202312]/10 bg-[radial-gradient(circle_at_center,_#dccca7_0%,_#f7ebd6_58%,_#ffffff_100%)] shadow-lg">
-                    <div className="relative h-40 w-32">
-                      <div className="absolute bottom-0 left-1/2 h-24 w-3 -translate-x-1/2 rounded-full bg-[#202312]" />
-                      <div className="absolute left-8 top-14 h-16 w-12 rounded-full border-4 border-[#202312] border-r-0 border-b-0 rotate-[-20deg]" />
-                      <div className="absolute right-8 top-14 h-16 w-12 rounded-full border-4 border-[#202312] border-l-0 border-b-0 rotate-[20deg]" />
-                      <div className="absolute left-2 top-4 h-16 w-14 rounded-[100%_0_100%_0] bg-[#202312] rotate-[-28deg] opacity-95" />
-                      <div className="absolute right-2 top-4 h-16 w-14 rounded-[0_100%_0_100%] bg-[#202312] rotate-[28deg] opacity-95" />
-                      <div className="absolute left-10 top-0 h-12 w-10 rounded-[100%_0_100%_0] bg-[#202312] rotate-[-12deg] opacity-90" />
-                      <div className="absolute right-10 top-0 h-12 w-10 rounded-[0_100%_0_100%] bg-[#202312] rotate-[12deg] opacity-90" />
-                    </div>
-                  </div>
-                  <div className="mt-8 text-center">
-                    <div className="text-sm uppercase tracking-[0.25em] text-[#202312]/60">Led by Adam Dircksen</div>
-                    <div className="mt-3 text-2xl font-semibold">Rooted in growth. Focused on results.</div>
-                    <p className="mt-4 text-sm leading-7 text-[#202312]/75">
-                      Practical consulting support for communication, leadership, and alignment in education and business.
-                    </p>
-                  </div>
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <div class="tree-wrap">
+                <div class="tree-icon" aria-hidden="true">
+                  <div class="trunk"></div>
+                  <div class="branch left"></div>
+                  <div class="branch right"></div>
+                  <div class="leaf l1"></div>
+                  <div class="leaf l2"></div>
+                  <div class="leaf l3"></div>
+                  <div class="leaf l4"></div>
+                  <div class="leaf l5"></div>
+                  <div class="leaf l6"></div>
+                  <div class="leaf l7"></div>
+                  <div class="leaf l8"></div>
                 </div>
+                <div class="section-tag">Led by Adam Dircksen</div>
+                <h2>Rooted in growth. Focused on results.</h2>
+                <p>
+                  Olive Tree Consultants helps educational institutions and organizations build healthier communication, more effective leadership, and sustainable alignment over time.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.25em] text-[#202312]/55">Services</div>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight">Two focused areas of consulting expertise.</h2>
-          <p className="mt-5 text-lg leading-8 text-[#202312]/76">
-            Olive Tree Consultants provides specialized support through Educational Consulting and Corporate Consulting, helping clients strengthen communication systems, leadership practices, and organizational effectiveness.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="group rounded-[2rem] border border-[#202312]/10 bg-white/55 p-8 shadow-lg shadow-[#202312]/5 transition hover:-translate-y-1">
-            <div className="mb-5 inline-flex rounded-2xl bg-[#202312] px-4 py-2 text-sm font-medium text-[#f7ebd6]">Educational Consulting</div>
-            <h3 className="text-2xl font-semibold">Supporting stronger teaching, learning, and faculty development.</h3>
-            <p className="mt-4 text-base leading-8 text-[#202312]/76">
-              Olive Tree partners with colleges, universities, and schools to improve teaching effectiveness, strengthen student learning outcomes, and advance strategic initiatives tied to instruction and academic growth.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-[#202312]/78">
-              <li>• Faculty workshops and development sessions</li>
-              <li>• Course and program design support</li>
-              <li>• Strategic teaching and learning initiatives</li>
-              <li>• Applied solutions for real educational settings</li>
-            </ul>
-          </div>
-
-          <div className="group rounded-[2rem] border border-[#202312]/10 bg-white/55 p-8 shadow-lg shadow-[#202312]/5 transition hover:-translate-y-1">
-            <div className="mb-5 inline-flex rounded-2xl bg-[#dccca7] px-4 py-2 text-sm font-medium text-[#202312]">Corporate Consulting</div>
-            <h3 className="text-2xl font-semibold">Equipping leaders and teams to communicate with more clarity and impact.</h3>
-            <p className="mt-4 text-base leading-8 text-[#202312]/76">
-              Olive Tree helps organizations improve decision-making, team engagement, and leadership communication through tailored assessments, coaching, training, and hands-on learning experiences.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-[#202312]/78">
-              <li>• Leadership communication training</li>
-              <li>• Needs assessments and tailored development plans</li>
-              <li>• Coaching for supervisors, managers, and executives</li>
-              <li>• Team alignment and practical workplace application</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="border-y border-[#202312]/10 bg-white/35">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.25em] text-[#202312]/55">About</div>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight">A consulting practice built around thoughtful growth.</h2>
-          </div>
-          <div className="space-y-6 text-lg leading-8 text-[#202312]/76">
+      <section id="services">
+        <div class="container">
+          <div class="section-intro">
+            <div class="section-tag">Services</div>
+            <h2>Two tailored consulting paths for meaningful, lasting improvement.</h2>
             <p>
-              Founded and led by Adam Dircksen, Olive Tree Consultants brings a collaborative and research-informed approach to consulting, helping clients address communication and leadership challenges in ways that are practical, sustainable, and relevant to their environment.
-            </p>
-            <p>
-              Whether working with an academic institution or an organizational leadership team, the focus remains the same: translating insight into action and helping people build capacity that lasts.
+              Olive Tree Consultants operates through Educational Consulting and Corporate Consulting, providing context-specific support that strengthens communication, leadership effectiveness, and organizational alignment.
             </p>
           </div>
-        </div>
-      </section>
 
-      <section id="approach" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.25em] text-[#202312]/55">Approach</div>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight">Research-informed, collaborative, and grounded in real-world application.</h2>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-[2rem] border border-[#202312]/10 bg-[#f7ebd6] p-7 shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-[#202312]/55">01</div>
-            <h3 className="mt-4 text-xl font-semibold">Assess</h3>
-            <p className="mt-3 text-sm leading-7 text-[#202312]/75">
-              Each engagement begins with understanding the client’s goals, context, and communication or leadership challenges.
-            </p>
-          </div>
-          <div className="rounded-[2rem] border border-[#202312]/10 bg-[#f7ebd6] p-7 shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-[#202312]/55">02</div>
-            <h3 className="mt-4 text-xl font-semibold">Design</h3>
-            <p className="mt-3 text-sm leading-7 text-[#202312]/75">
-              Solutions are tailored to the setting, whether that means workshops, coaching, strategic planning, or development support.
-            </p>
-          </div>
-          <div className="rounded-[2rem] border border-[#202312]/10 bg-[#f7ebd6] p-7 shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-[#202312]/55">03</div>
-            <h3 className="mt-4 text-xl font-semibold">Apply</h3>
-            <p className="mt-3 text-sm leading-7 text-[#202312]/75">
-              The goal is measurable improvement through practical implementation that strengthens performance over time.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="px-6 pb-20 lg:px-8">
-        <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-[#202312] px-8 py-12 text-[#f7ebd6] shadow-2xl shadow-[#202312]/15 lg:px-12">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-[#f7ebd6]/60">Get in touch</div>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight">Start a conversation about your goals.</h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-[#f7ebd6]/78">
-                Olive Tree Consultants works with educational institutions and organizations seeking stronger communication, more effective leadership, and healthier alignment. Connect with Adam Dircksen to discuss your needs.
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="pill dark">Educational Consulting</div>
+              <h3>Supporting stronger teaching, learning, and faculty development.</h3>
+              <p>
+                Olive Tree works with colleges, universities, and schools to improve teaching effectiveness, support faculty development, and enhance student learning outcomes.
               </p>
-            </div>
-            <div className="rounded-[2rem] border border-[#f7ebd6]/10 bg-white/5 p-8 backdrop-blur">
-              <div className="space-y-4 text-sm">
-                <div>
-                  <div className="text-[#f7ebd6]/55">Business</div>
-                  <div className="mt-1 text-lg font-medium">Olive Tree Consultants</div>
-                </div>
-                <div>
-                  <div className="text-[#f7ebd6]/55">Led by</div>
-                  <div className="mt-1 text-lg font-medium">Adam Dircksen</div>
-                </div>
-                <div>
-                  <div className="text-[#f7ebd6]/55">Location</div>
-                  <div className="mt-1 text-lg font-medium">Fort Wayne, Indiana</div>
-                </div>
-                <a
-                  href="mailto:adam@olivetreeconsultants.com"
-                  className="mt-6 inline-flex rounded-2xl bg-[#f7ebd6] px-5 py-3 font-semibold text-[#202312] transition hover:-translate-y-0.5"
-                >
-                  Contact Olive Tree Consultants
-                </a>
+              <ul class="service-list">
+                <li>Faculty workshops and professional development</li>
+                <li>Course and program design support</li>
+                <li>Strategic teaching and learning initiatives</li>
+                <li>Practical solutions for real educational settings</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="pill light">Corporate Consulting</div>
+              <h3>Helping leaders communicate clearly and guide teams more effectively.</h3>
+              <p>
+                Through assessments, customized training, coaching, and applied learning experiences, Olive Tree supports leaders at every level in improving communication, decision-making, and team engagement.
+              </p>
+              <ul class="service-list">
+                <li>Leadership communication training</li>
+                <li>Needs assessments and development planning</li>
+                <li>Coaching for supervisors to executive teams</li>
+                <li>Team alignment and workplace application</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-band">
+        <div class="container about-layout">
+          <div class="section-intro" style="margin-bottom: 0;">
+            <div class="section-tag">About</div>
+            <h2>A consulting practice centered on thoughtful growth and professional clarity.</h2>
+          </div>
+          <div class="about-panel">
+            <p>
+              Founded and led by Adam Dircksen, Olive Tree Consultants takes a collaborative, research-informed approach to helping clients solve communication and leadership challenges in educational and organizational settings.
+            </p>
+            <p>
+              Every engagement is built around practical application, ensuring that new insights become useful action and sustainable progress rather than staying theoretical.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="approach">
+        <div class="container">
+          <div class="section-intro">
+            <div class="section-tag">Approach</div>
+            <h2>Research-informed, collaborative, and grounded in real-world application.</h2>
+            <p>
+              Olive Tree Consultants focuses on solutions that fit the actual context of each client, creating support that is strategic, practical, and sustainable.
+            </p>
+          </div>
+
+          <div class="approach-grid">
+            <article class="approach-card">
+              <div class="step-number">01 Assess</div>
+              <h3>Understand the environment.</h3>
+              <p>
+                Every project begins by identifying goals, challenges, communication patterns, and leadership needs.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <div class="step-number">02 Design</div>
+              <h3>Build a tailored solution.</h3>
+              <p>
+                Workshops, coaching, planning, and development support are shaped around the client’s setting and priorities.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <div class="step-number">03 Apply</div>
+              <h3>Turn insight into results.</h3>
+              <p>
+                The goal is stronger communication, better leadership practice, and sustainable improvement over time.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact-shell">
+            <div class="contact-grid">
+              <div>
+                <div class="section-tag">Get in Touch</div>
+                <h2>Start a conversation about your goals.</h2>
+                <p>
+                  Olive Tree Consultants partners with schools, colleges, universities, and organizations seeking stronger communication, healthier alignment, and more effective leadership. Connect with Adam Dircksen to discuss next steps.
+                </p>
+              </div>
+              <div class="contact-box">
+                <div class="contact-meta">Business<strong>Olive Tree Consultants</strong></div>
+                <div class="contact-meta">Led by<strong>Adam Dircksen</strong></div>
+                <div class="contact-meta">Location<strong>Fort Wayne, Indiana</strong></div>
+                <a href="mailto:adam@olivetreeconsultants.com" class="btn btn-primary">Contact Olive Tree Consultants</a>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
-}
+    </main>
+
+    <footer>
+      <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
+    </footer>
+  </div>
+</body>
+</html>
