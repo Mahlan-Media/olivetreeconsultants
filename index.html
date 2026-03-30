@@ -14,17 +14,10 @@
       --sand: #dccca7;
       --cream: #f7ebd6;
       --white: #fffdf8;
-      --shadow: rgba(32, 35, 18, 0.12);
-      --shadow-strong: rgba(32, 35, 18, 0.2);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -59,6 +52,7 @@
       right: 8%;
       transform: rotate(18deg);
       animation: drift 10s ease-in-out infinite;
+      z-index: 1;
     }
 
     .floating-leaf::before {
@@ -87,19 +81,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-2deg); }
-      50% { transform: rotate(2deg); }
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .container {
@@ -112,7 +95,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(12px);
-      background: rgba(247, 235, 214, 0.85);
+      background: rgba(247, 235, 214, 0.84);
       border-bottom: 1px solid rgba(32, 35, 18, 0.08);
     }
 
@@ -124,9 +107,7 @@
       padding: 18px 0;
     }
 
-    .brand {
-      line-height: 1.1;
-    }
+    .brand { line-height: 1.1; }
 
     .brand-title {
       font-size: 1.3rem;
@@ -169,24 +150,75 @@
       transition: width 0.28s ease;
     }
 
-    nav a:hover::after {
-      width: 100%;
-    }
+    nav a:hover::after { width: 100%; }
 
     .hero {
       position: relative;
-      padding: 92px 0 64px;
+      min-height: 175vh;
+      overflow: clip;
+    }
+
+    .hero-stage {
+      position: sticky;
+      top: 72px;
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 30%, rgba(255, 255, 255, 0.35), transparent 20%),
+        linear-gradient(90deg, rgba(247, 235, 214, 0.95) 0%, rgba(247, 235, 214, 0.82) 34%, rgba(247, 235, 214, 0.40) 62%, rgba(247, 235, 214, 0.12) 100%);
+      z-index: 2;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(247, 235, 214, 0.10), rgba(247, 235, 214, 0.30));
+      z-index: 3;
+    }
+
+    #scrollSequence {
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      width: min(900px, 72vw);
+      max-width: none;
+      opacity: 0.98;
+      filter: drop-shadow(0 26px 55px rgba(32, 35, 18, 0.16));
+      z-index: 1;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 5;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
       align-items: center;
+      width: 100%;
+      padding: 72px 0 84px;
     }
 
     .hero-copy,
-    .hero-card,
     .section-intro,
     .service-card,
     .about-panel,
@@ -195,11 +227,16 @@
       animation: fadeUp 0.85s ease both;
     }
 
+    .hero-copy {
+      max-width: 720px;
+      padding: 26px 0;
+    }
+
     .eyebrow {
       display: inline-block;
       padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.48);
+      background: rgba(255, 255, 255, 0.55);
       border: 1px solid rgba(32, 35, 18, 0.08);
       font-family: Arial, Helvetica, sans-serif;
       font-size: 0.83rem;
@@ -218,9 +255,9 @@
     .hero-copy p {
       font-size: 1.14rem;
       line-height: 1.9;
-      max-width: 760px;
-      color: rgba(32, 35, 18, 0.8);
+      color: rgba(32, 35, 18, 0.82);
       font-family: Arial, Helvetica, sans-serif;
+      max-width: 640px;
     }
 
     .actions {
@@ -249,14 +286,12 @@
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.46);
+      background: rgba(255, 255, 255, 0.5);
       color: var(--forest);
       border: 1px solid rgba(32, 35, 18, 0.1);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+    .btn:hover { transform: translateY(-2px); }
 
     .stats {
       display: grid;
@@ -266,11 +301,12 @@
     }
 
     .stat {
-      background: rgba(255, 255, 255, 0.46);
+      background: rgba(255, 255, 255, 0.52);
       border: 1px solid rgba(32, 35, 18, 0.08);
       border-radius: 26px;
       padding: 24px 22px;
       box-shadow: 0 14px 35px rgba(32, 35, 18, 0.06);
+      backdrop-filter: blur(6px);
     }
 
     .stat strong {
@@ -286,119 +322,14 @@
       font-size: 0.96rem;
     }
 
-    .hero-card {
-      position: relative;
-      padding: 18px;
-      border-radius: 34px;
-      background: rgba(255, 255, 255, 0.45);
-      border: 1px solid rgba(32, 35, 18, 0.08);
-      box-shadow: 0 25px 50px rgba(32, 35, 18, 0.1);
+    .hero-spacer {
+      min-height: 1px;
     }
 
-    .hero-card-inner {
-      border-radius: 28px;
-      padding: 30px;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
-      min-height: 540px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card-inner::before {
-      content: "";
-      position: absolute;
-      inset: 28px;
-      border-radius: 26px;
-      background: rgba(255, 253, 248, 0.78);
-      border: 1px solid rgba(32, 35, 18, 0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
-    }
-
-    .tree-wrap {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 360px;
-      padding: 28px 16px;
-    }
-
-    .tree-icon {
-      position: relative;
-      width: 220px;
-      height: 250px;
-      margin: 0 auto 24px;
-      animation: sway 7s ease-in-out infinite;
-      transform-origin: bottom center;
-    }
-
-    .trunk {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 110px;
-      background: var(--forest);
-      border-radius: 20px;
-    }
-
-    .branch {
-      position: absolute;
-      background: var(--forest);
-      border-radius: 20px;
-      transform-origin: center left;
-    }
-
-    .branch.left {
-      width: 74px;
-      height: 10px;
-      left: 55px;
-      bottom: 115px;
-      transform: rotate(-34deg);
-    }
-
-    .branch.right {
-      width: 74px;
-      height: 10px;
-      right: 55px;
-      bottom: 115px;
-      transform: rotate(34deg);
-      transform-origin: center right;
-    }
-
-    .leaf {
-      position: absolute;
-      background: var(--forest);
-      border-radius: 100% 0 100% 0;
-      box-shadow: 0 10px 20px rgba(32, 35, 18, 0.08);
-    }
-
-    .leaf.l1 { width: 68px; height: 68px; top: 26px; left: 42px; transform: rotate(-30deg); }
-    .leaf.l2 { width: 72px; height: 72px; top: 16px; right: 42px; transform: rotate(28deg); }
-    .leaf.l3 { width: 62px; height: 62px; top: 72px; left: 18px; transform: rotate(-18deg); }
-    .leaf.l4 { width: 62px; height: 62px; top: 72px; right: 18px; transform: rotate(18deg); }
-    .leaf.l5 { width: 56px; height: 56px; top: 0; left: 82px; transform: rotate(-8deg); }
-    .leaf.l6 { width: 56px; height: 56px; top: 0; right: 82px; transform: rotate(8deg); }
-    .leaf.l7 { width: 64px; height: 64px; top: 108px; left: 74px; transform: rotate(-4deg); }
-    .leaf.l8 { width: 64px; height: 64px; top: 108px; right: 74px; transform: rotate(4deg); }
-
-    .tree-wrap h2 {
-      font-size: 2rem;
-      margin: 6px 0 10px;
-    }
-
-    .tree-wrap p {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.8;
-      color: rgba(32, 35, 18, 0.75);
-    }
-
-    section {
+    section.content-section {
       padding: 82px 0;
+      position: relative;
+      z-index: 5;
     }
 
     .section-intro {
@@ -446,6 +377,7 @@
       padding: 34px;
       box-shadow: 0 18px 40px rgba(32, 35, 18, 0.06);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      backdrop-filter: blur(4px);
     }
 
     .service-card:hover,
@@ -517,9 +449,7 @@
       align-items: start;
     }
 
-    .approach-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    .approach-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .step-number {
       font-family: Arial, Helvetica, sans-serif;
@@ -565,9 +495,7 @@
       padding: 28px;
     }
 
-    .contact-meta {
-      margin-bottom: 18px;
-    }
+    .contact-meta { margin-bottom: 18px; }
 
     .contact-meta strong {
       display: block;
@@ -587,9 +515,27 @@
       font-family: Arial, Helvetica, sans-serif;
       color: rgba(32, 35, 18, 0.65);
       font-size: 0.92rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    @media (max-width: 1100px) {
+      #scrollSequence {
+        left: 76%;
+        width: min(760px, 72vw);
+      }
     }
 
     @media (max-width: 980px) {
+      .hero {
+        min-height: 150vh;
+      }
+
+      .hero-stage {
+        top: 64px;
+        min-height: calc(100vh - 64px);
+      }
+
       .hero-grid,
       .services-grid,
       .about-layout,
@@ -598,8 +544,20 @@
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 54px;
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      #scrollSequence {
+        left: 50%;
+        top: 34%;
+        width: min(660px, 94vw);
+        opacity: 0.22;
+      }
+
+      .hero-media::before {
+        background:
+          linear-gradient(180deg, rgba(247, 235, 214, 0.92) 0%, rgba(247, 235, 214, 0.78) 42%, rgba(247, 235, 214, 0.52) 100%);
       }
 
       nav ul {
@@ -610,36 +568,19 @@
     }
 
     @media (max-width: 720px) {
-      .container {
-        width: min(100% - 26px, 1180px);
-      }
+      .container { width: min(100% - 26px, 1180px); }
 
       .nav {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      nav ul {
-        justify-content: flex-start;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card-inner {
-        min-height: auto;
-        padding: 22px;
-      }
-
-      .tree-icon {
-        width: 190px;
-        height: 220px;
-      }
-
-      .contact-shell {
-        padding: 32px 24px;
-      }
+      nav ul { justify-content: flex-start; }
+      .stats { grid-template-columns: 1fr; }
+      .contact-shell { padding: 32px 24px; }
+      .hero { min-height: 138vh; }
+      .hero-grid { padding: 52px 0 72px; }
+      #scrollSequence { top: 28%; width: 105vw; opacity: 0.18; }
     }
   </style>
 </head>
@@ -665,62 +606,44 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">Communication. Leadership. Alignment.</span>
-            <h1>Helping schools and organizations grow through clearer communication and stronger leadership.</h1>
-            <p>
-              Olive Tree Consultants is a professional consulting firm in Fort Wayne, Indiana, led by Adam Dircksen. Through educational consulting and corporate consulting, the firm helps clients improve teaching, leadership, team alignment, and long-term performance with practical, research-informed solutions.
-            </p>
-            <div class="actions">
-              <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
-              <a href="#services" class="btn btn-secondary">Explore Services</a>
-            </div>
-            <div class="stats">
-              <div class="stat">
-                <strong>2</strong>
-                <span>Focused consulting areas serving education and business.</span>
-              </div>
-              <div class="stat">
-                <strong>Fort Wayne</strong>
-                <span>Professionally serving local and regional clients from Indiana.</span>
-              </div>
-              <div class="stat">
-                <strong>Practical</strong>
-                <span>Designed to turn insight into measurable real-world improvement.</span>
-              </div>
-            </div>
-          </div>
+      <section class="hero" id="hero-sequence">
+        <div class="hero-media" aria-hidden="true">
+          <img id="scrollSequence" src="images/0001.webp" alt="" />
+        </div>
 
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="tree-wrap">
-                <div class="tree-icon" aria-hidden="true">
-                  <div class="trunk"></div>
-                  <div class="branch left"></div>
-                  <div class="branch right"></div>
-                  <div class="leaf l1"></div>
-                  <div class="leaf l2"></div>
-                  <div class="leaf l3"></div>
-                  <div class="leaf l4"></div>
-                  <div class="leaf l5"></div>
-                  <div class="leaf l6"></div>
-                  <div class="leaf l7"></div>
-                  <div class="leaf l8"></div>
+        <div class="hero-stage">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow">Communication. Leadership. Alignment.</span>
+              <h1>Helping schools and organizations grow through clearer communication and stronger leadership.</h1>
+              <p>
+                Olive Tree Consultants is a professional consulting firm in Fort Wayne, Indiana, led by Adam Dircksen. Through educational consulting and corporate consulting, the firm helps clients improve teaching, leadership, team alignment, and long-term performance with practical, research-informed solutions.
+              </p>
+              <div class="actions">
+                <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+              </div>
+              <div class="stats">
+                <div class="stat">
+                  <strong>2</strong>
+                  <span>Focused consulting areas serving education and business.</span>
                 </div>
-                <div class="section-tag">Led by Adam Dircksen</div>
-                <h2>Rooted in growth. Focused on results.</h2>
-                <p>
-                  Olive Tree Consultants helps educational institutions and organizations build healthier communication, more effective leadership, and sustainable alignment over time.
-                </p>
+                <div class="stat">
+                  <strong>Fort Wayne</strong>
+                  <span>Professionally serving local and regional clients from Indiana.</span>
+                </div>
+                <div class="stat">
+                  <strong>Practical</strong>
+                  <span>Designed to turn insight into measurable real-world improvement.</span>
+                </div>
               </div>
             </div>
+            <div class="hero-spacer"></div>
           </div>
         </div>
       </section>
 
-      <section id="services">
+      <section id="services" class="content-section">
         <div class="container">
           <div class="section-intro">
             <div class="section-tag">Services</div>
@@ -762,7 +685,7 @@
         </div>
       </section>
 
-      <section id="about" class="about-band">
+      <section id="about" class="about-band content-section">
         <div class="container about-layout">
           <div class="section-intro" style="margin-bottom: 0;">
             <div class="section-tag">About</div>
@@ -779,7 +702,7 @@
         </div>
       </section>
 
-      <section id="approach">
+      <section id="approach" class="content-section">
         <div class="container">
           <div class="section-intro">
             <div class="section-tag">Approach</div>
@@ -817,7 +740,7 @@
         </div>
       </section>
 
-      <section id="contact">
+      <section id="contact" class="content-section">
         <div class="container">
           <div class="contact-shell">
             <div class="contact-grid">
@@ -844,5 +767,64 @@
       <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
     </footer>
   </div>
+
+  <script>
+    (function () {
+      const totalFrames = 232;
+      const image = document.getElementById('scrollSequence');
+      const hero = document.getElementById('hero-sequence');
+      if (!image || !hero) return;
+
+      const frameCache = [];
+      let ticking = false;
+      let loadedCount = 0;
+
+      function framePath(index) {
+        return `images/${String(index).padStart(4, '0')}.webp`;
+      }
+
+      function preloadFrames() {
+        for (let i = 1; i <= totalFrames; i++) {
+          const img = new Image();
+          img.src = framePath(i);
+          img.decoding = 'async';
+          img.onload = () => { loadedCount += 1; };
+          frameCache.push(img);
+        }
+      }
+
+      function updateFrame() {
+        const rect = hero.getBoundingClientRect();
+        const maxScroll = hero.offsetHeight - window.innerHeight;
+        const rawProgress = maxScroll > 0 ? (-rect.top / maxScroll) : 0;
+        const progress = Math.max(0, Math.min(1, rawProgress));
+        const frame = Math.min(totalFrames, Math.max(1, Math.round(progress * (totalFrames - 1)) + 1));
+        const nextSrc = framePath(frame);
+        if (!image.src.includes(nextSrc)) {
+          image.src = nextSrc;
+        }
+
+        const scale = 1 + progress * 0.03;
+        const y = -50 + progress * 2;
+        image.style.transform = `translate(-50%, ${y}%) scale(${scale})`;
+        image.style.opacity = window.innerWidth <= 980 ? 0.18 + (progress * 0.05) : 0.98;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateFrame();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      preloadFrames();
+      updateFrame();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', updateFrame);
+    })();
+  </script>
 </body>
 </html>
