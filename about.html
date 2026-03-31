@@ -1,1 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Olive Tree Consultants</title>
+  <meta
+    name="description"
+    content="Learn more about Olive Tree Consultants and the team serving Fort Wayne and the surrounding region through practical, research-informed consulting."
+  />
+  <style>
+    :root {
+      --forest: #183628;
+      --forest-soft: #234635;
+      --sand: #d8c59b;
+      --cream: #f8f3e8;
+      --mist: #f2ede3;
+      --panel: #ece7dc;
+      --white: #fffdf9;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--forest);
+      background:
+        radial-gradient(circle at top left, rgba(216, 197, 155, 0.14), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(24, 54, 40, 0.04), transparent 24%),
+        linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .container {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 253, 249, 0.56);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(24, 54, 40, 0.08);
+      box-shadow: 0 10px 24px rgba(24, 54, 40, 0.04);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo-fallback {
+      width: 28px;
+      height: 28px;
+      border-radius: 100% 0 100% 0;
+      background: var(--forest);
+      transform: rotate(-18deg);
+      box-shadow: 10px 10px 0 -7px rgba(216, 197, 155, 0.9);
+      flex: 0 0 auto;
+      display: none;
+    }
+
+    .brand-text { line-height: 1.05; }
+    .brand-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+    .brand-sub {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: rgba(24, 54, 40, 0.68);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: rgba(24, 54, 40, 0.82);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--forest);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: var(--forest);
+      color: var(--cream);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 16px 28px rgba(24, 54, 40, 0.14);
+      transition: transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover { transform: translateY(-2px); }
+
+    .hero {
+      position: relative;
+      padding: 88px 0 36px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -120px;
+      top: -60px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 197, 155, 0.22), rgba(216, 197, 155, 0));
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -20px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24, 54, 40, 0.06), rgba(24, 54, 40, 0));
+      pointer-events: none;
+    }
+
+    .about-header {
+      max-width: 920px;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      color: rgba(24, 54, 40, 0.76);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 22px rgba(24, 54, 40, 0.05);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 100% 0 100% 0;
+      background: var(--forest);
+      transform: rotate(-22deg);
+    }
+
+    h1 {
+      margin: 22px auto 18px;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--forest);
+      font-weight: 800;
+      max-width: 14ch;
+    }
+
+    .about-header p {
+      margin: 0 auto;
+      max-width: 900px;
+      font-size: 1.05rem;
+      line-height: 1.95;
+      color: rgba(24, 54, 40, 0.78);
+    }
+
+    .team-section {
+      padding: 24px 0 84px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .person-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 36px rgba(24, 54, 40, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .person-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 42px rgba(24, 54, 40, 0.08);
+    }
+
+    .person-photo-wrap {
+      position: relative;
+      aspect-ratio: 4 / 4.2;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.58), transparent 18%),
+        linear-gradient(145deg, rgba(248,243,232,0.8), rgba(216,197,155,0.72));
+      overflow: hidden;
+    }
+
+    .person-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .person-photo-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 22px;
+      color: rgba(24, 54, 40, 0.64);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .person-body {
+      padding: 22px 22px 24px;
+    }
+
+    .person-name {
+      margin: 0 0 12px;
+      font-size: 1.34rem;
+      line-height: 1.1;
+      color: var(--forest);
+      font-weight: 800;
+    }
+
+    .person-body p {
+      margin: 0;
+      color: rgba(24, 54, 40, 0.76);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    footer {
+      padding: 0 0 40px;
+      color: rgba(24, 54, 40, 0.6);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1180px) {
+      .nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .brand-mark,
+      .nav-cta {
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        max-width: 16ch;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand-mark">
+        <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div class="brand-logo-fallback" aria-hidden="true"></div>
+        <div class="brand-text">
+          <div class="brand-title">Olive Tree Consultants</div>
+          <div class="brand-sub">Fort Wayne, Indiana</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="educational-consulting.html">Educational Consulting</a></li>
+          <li><a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+        </ul>
+      </nav>
+
+      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="about-header">
+          <span class="eyebrow">About</span>
+          <h1>About Olive Tree Consultants</h1>
+          <p>
+            Olive Tree Consultants was founded on a simple belief: that stronger communication and better teaching make organizations and communities better. The olive tree takes root in difficult soil, weathers adversity, and grows stronger over time — and that is exactly the kind of development we set out to provide. Whether we are working with a leadership team, a faculty member, or an institution navigating rapid change, our goal is always development that lasts. Our roots are in Fort Wayne and the surrounding region, and so is our commitment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="container">
+        <div class="team-grid">
+          <article class="person-card">
+            <div class="person-photo-wrap">
+              <img src="images/adam-dircksen.jpg" alt="Adam Dircksen" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>adam-dircksen.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Adam Dircksen</h2>
+              <p>Adam Dircksen is Executive Director of the Center for the Enhancement of Learning and Teaching at Purdue University Fort Wayne, where he leads a team of instructional designers and consultants and oversees professional development initiatives. He holds a master's degree in professional communication and brings extensive experience designing and facilitating workshops, consultations, and multi-session development programs for professionals and leaders, with particular strengths in public speaking, persuasion, conflict, and negotiation. He works across multiple Purdue campuses and institutional contexts, contributing to cross-campus alignment and collaboration in professional development, experience that informs his ability to navigate complex organizations and coordinate efforts across diverse stakeholder groups. He brings a particular strength in identifying how communication challenges at one level connect to and affect performance at others, an approach that shapes both his leadership work and his consulting practice. His style is practical, collaborative, and results-oriented.</p>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo-wrap">
+              <img src="images/kevin-stoller.jpg" alt="Kevin Stoller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>kevin-stoller.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Kevin Stoller</h2>
+              <p>Kevin Stoller is a Senior Instructional Consultant at Purdue University Fort Wayne, where he also teaches communication. He brings deep expertise in public speaking, small group communication, persuasion, and leadership development, with more than 16 years of experience helping individuals and teams communicate more effectively in professional settings. He served for over a decade as Director of the core public speaking course at Purdue Fort Wayne, overseeing instruction for hundreds of students and developing curriculum grounded in real-world communication demands. His work emphasizes practical skill development, audience awareness, and communication strategies that strengthen both individual performance and team effectiveness.</p>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo-wrap">
+              <img src="images/christa-jennings.jpg" alt="Christa Jennings" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>christa-jennings.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Christa Jennings</h2>
+              <p>Christa Jennings is the current Director of the core public speaking course at Purdue University Fort Wayne and a communication specialist with expertise in public speaking, group communication, interpersonal dynamics, and message strategy. She brings more than a decade of corporate experience in brand management and corporate training, including direct experience developing and delivering communication programs in organizational settings, giving her a strong, practical understanding of how communication challenges show up in workplace environments. Her work focuses on helping individuals and teams develop messaging that is clear, credible, and aligned with audience needs and organizational goals.</p>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo-wrap">
+              <img src="images/rachel-ramsey.jpg" alt="Rachel Ramsey" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>rachel-ramsey.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Rachel Ramsey</h2>
+              <p>Rachel Ramsey is Assistant Director of Faculty Teaching Development at Purdue University Fort Wayne and brings expertise in assessment, stakeholder engagement, and strategic program development. Drawing on her background in healthcare, higher education, and organizational behavior, she is skilled at gathering meaningful input from diverse stakeholders, identifying priorities, and translating complex findings into clear, actionable strategies. She brings a systems-thinking orientation to her work, with particular strengths in assessment; identifying patterns across stakeholder perspectives; and ensuring that consulting engagements are well-informed, responsive, and built around what organizations actually need.</p>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo-wrap">
+              <img src="images/katie-jia.jpg" alt="Xiaokai Katie Jia" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>katie-jia.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Xiaokai (Katie) Jia</h2>
+              <p>Katie Jia is Associate Director of Educational Technologies at Purdue University Fort Wayne and lead educational technology consultant for Olive Tree Consultants. She brings expertise in instructional design, AI integration, and educational technology, with a particular focus on building learning experiences that are grounded in sound pedagogy rather than driven by technology for its own sake. Her work emphasizes active learning strategies and helps faculty, departments, and administrators strengthen teaching and improve student outcomes across face-to-face, blended, and online environments. Katie holds a Ph.D. in Instructional Systems Technology from Indiana University, where her dissertation examined how instructors support student reflection in service-learning contexts. She has also conducted program evaluations for federal and community-funded early childhood wellness initiatives, bringing a rigorous, data-informed approach to assessing program impact.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
+  </footer>
+</body>
+</html>
