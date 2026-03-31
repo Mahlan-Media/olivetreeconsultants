@@ -35,6 +35,18 @@
     img { display: block; max-width: 100%; }
     a { color: inherit; }
 
+    .bg-leaf {
+      position: fixed;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24,54,40,0.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-leaf.l1 { width: 420px; height: 420px; left: -120px; top: 30%; transform: rotate(-18deg); }
+    .bg-leaf.l2 { width: 360px; height: 360px; right: -100px; top: 55%; transform: rotate(22deg); }
+    .bg-leaf.l3 { width: 300px; height: 300px; left: 20%; bottom: -120px; transform: rotate(10deg); }
+
     .container {
       width: min(1280px, calc(100% - 40px));
       margin: 0 auto;
@@ -397,6 +409,17 @@
 
           <article class="person-card">
             <div class="person-photo-wrap">
+              <img src="images/katie-jia.jpg" alt="Xiaokai Katie Jia" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>katie-jia.jpg</strong></div>
+            </div>
+            <div class="person-body">
+              <h2 class="person-name">Xiaokai (Katie) Jia</h2>
+              <p>Katie Jia is Associate Director of Educational Technologies at Purdue University Fort Wayne and lead educational technology consultant for Olive Tree Consultants. She brings expertise in instructional design, AI integration, and educational technology, with a particular focus on building learning experiences that are grounded in sound pedagogy rather than driven by technology for its own sake. Her work emphasizes active learning strategies and helps faculty, departments, and administrators strengthen teaching and improve student outcomes across face-to-face, blended, and online environments. Katie holds a Ph.D. in Instructional Systems Technology from Indiana University, where her dissertation examined how instructors support student reflection in service-learning contexts. She has also conducted program evaluations for federal and community-funded early childhood wellness initiatives, bringing a rigorous, data-informed approach to assessing program impact.</p>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-photo-wrap">
               <img src="images/kevin-stoller.jpg" alt="Kevin Stoller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
               <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>kevin-stoller.jpg</strong></div>
             </div>
@@ -425,17 +448,6 @@
             <div class="person-body">
               <h2 class="person-name">Rachel Ramsey</h2>
               <p>Rachel Ramsey is Assistant Director of Faculty Teaching Development at Purdue University Fort Wayne and brings expertise in assessment, stakeholder engagement, and strategic program development. Drawing on her background in healthcare, higher education, and organizational behavior, she is skilled at gathering meaningful input from diverse stakeholders, identifying priorities, and translating complex findings into clear, actionable strategies. She brings a systems-thinking orientation to her work, with particular strengths in assessment; identifying patterns across stakeholder perspectives; and ensuring that consulting engagements are well-informed, responsive, and built around what organizations actually need.</p>
-            </div>
-          </article>
-
-          <article class="person-card">
-            <div class="person-photo-wrap">
-              <img src="images/katie-jia.jpg" alt="Xiaokai Katie Jia" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-              <div class="person-photo-fallback" style="display:none;">Upload photo as<br /><strong>katie-jia.jpg</strong></div>
-            </div>
-            <div class="person-body">
-              <h2 class="person-name">Xiaokai (Katie) Jia</h2>
-              <p>Katie Jia is Associate Director of Educational Technologies at Purdue University Fort Wayne and lead educational technology consultant for Olive Tree Consultants. She brings expertise in instructional design, AI integration, and educational technology, with a particular focus on building learning experiences that are grounded in sound pedagogy rather than driven by technology for its own sake. Her work emphasizes active learning strategies and helps faculty, departments, and administrators strengthen teaching and improve student outcomes across face-to-face, blended, and online environments. Katie holds a Ph.D. in Instructional Systems Technology from Indiana University, where her dissertation examined how instructors support student reflection in service-learning contexts. She has also conducted program evaluations for federal and community-funded early childhood wellness initiatives, bringing a rigorous, data-informed approach to assessing program impact.</p>
             </div>
           </article>
         </div>
