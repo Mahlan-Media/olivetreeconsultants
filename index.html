@@ -13,9 +13,9 @@
       --forest: #202312;
       --sand: #dccca7;
       --cream: #f7ebd6;
-      --mist: #f3efe6;
-      --panel: #efede7;
-      --white: #fffdf8;
+      --mist: #f8f6f1;
+      --panel: #f3f0ea;
+      --white: #fffdf9;
     }
 
     * { box-sizing: border-box; }
@@ -26,8 +26,8 @@
       color: var(--forest);
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(220, 204, 167, 0.45), transparent 22%),
-        linear-gradient(180deg, #faf7f0 0%, #f3eee5 100%);
+        radial-gradient(circle at top left, rgba(220, 204, 167, 0.18), transparent 24%),
+        linear-gradient(180deg, #fcfbf8 0%, #f7f5f0 100%);
       overflow-x: hidden;
     }
 
@@ -39,36 +39,30 @@
       margin: 0 auto;
     }
 
-    .topbar {
-      background: var(--forest);
-      color: var(--cream);
-      text-align: center;
-      padding: 12px 18px;
-      font-size: 0.94rem;
-      letter-spacing: 0.02em;
-    }
-
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(250, 247, 240, 0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(32, 35, 18, 0.08);
+      background: rgba(255, 253, 249, 0.62);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(32, 35, 18, 0.07);
+      box-shadow: 0 10px 24px rgba(32, 35, 18, 0.04);
     }
 
     .nav {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      justify-content: space-between;
       gap: 24px;
-      padding: 18px 0;
+      padding: 16px 0;
     }
 
     .brand-mark {
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
     }
 
     .brand-leaf {
@@ -81,13 +75,11 @@
       flex: 0 0 auto;
     }
 
-    .brand-text {
-      line-height: 1.05;
-    }
+    .brand-text { line-height: 1.05; }
 
     .brand-title {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.25rem;
+      font-size: 1.18rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -102,24 +94,35 @@
     nav ul {
       list-style: none;
       display: flex;
-      gap: 26px;
+      gap: 22px;
       margin: 0;
       padding: 0;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     nav a {
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 600;
       color: rgba(32, 35, 18, 0.82);
-      transition: opacity 0.25s ease;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
     }
 
     nav a:hover,
     nav a.active {
       opacity: 1;
       color: var(--forest);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
@@ -133,15 +136,16 @@
       border-radius: 999px;
       font-weight: 700;
       font-size: 0.92rem;
-      box-shadow: 0 16px 28px rgba(32, 35, 18, 0.14);
+      box-shadow: 0 16px 28px rgba(32, 35, 18, 0.12);
       transition: transform 0.25s ease;
+      white-space: nowrap;
     }
 
     .nav-cta:hover { transform: translateY(-2px); }
 
     .hero {
       position: relative;
-      padding: 76px 0 42px;
+      padding: 92px 0 42px;
       overflow: hidden;
     }
 
@@ -153,19 +157,22 @@
       width: 420px;
       height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(220, 204, 167, 0.42), rgba(220, 204, 167, 0));
+      background: radial-gradient(circle, rgba(220, 204, 167, 0.26), rgba(220, 204, 167, 0));
       pointer-events: none;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 42px;
+      grid-template-columns: 1fr;
+      gap: 26px;
       align-items: center;
     }
 
     .hero-copy {
-      max-width: 680px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeUp 0.85s ease both;
     }
 
     .eyebrow {
@@ -174,7 +181,7 @@
       gap: 10px;
       padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.78);
       border: 1px solid rgba(32, 35, 18, 0.08);
       color: rgba(32, 35, 18, 0.76);
       font-size: 0.82rem;
@@ -196,23 +203,24 @@
     h1 {
       margin: 22px 0 18px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3rem, 5vw, 5.4rem);
+      font-size: clamp(3rem, 6vw, 5.6rem);
       line-height: 0.94;
       letter-spacing: -0.04em;
     }
 
     .hero-copy p {
-      margin: 0;
+      margin: 0 auto;
       font-size: 1.08rem;
       line-height: 1.9;
       color: rgba(32, 35, 18, 0.76);
-      max-width: 610px;
+      max-width: 760px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
+      justify-content: center;
       margin-top: 30px;
     }
 
@@ -225,7 +233,7 @@
       border-radius: 16px;
       text-decoration: none;
       font-weight: 700;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, opacity 0.25s ease;
     }
 
     .btn:hover { transform: translateY(-2px); }
@@ -233,60 +241,13 @@
     .btn-primary {
       background: var(--forest);
       color: var(--cream);
-      box-shadow: 0 18px 30px rgba(32, 35, 18, 0.14);
+      box-shadow: 0 18px 30px rgba(32, 35, 18, 0.12);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.86);
       color: var(--forest);
       border: 1px solid rgba(32, 35, 18, 0.1);
-    }
-
-    .hero-visual {
-      position: relative;
-      min-height: 560px;
-      border-radius: 34px;
-      background:
-        linear-gradient(160deg, rgba(247, 235, 214, 0.92), rgba(220, 204, 167, 0.94));
-      border: 1px solid rgba(32, 35, 18, 0.08);
-      box-shadow: 0 28px 55px rgba(32, 35, 18, 0.12);
-      overflow: hidden;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 24px;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.52);
-      border: 1px solid rgba(32, 35, 18, 0.06);
-    }
-
-    .hero-placeholder {
-      position: absolute;
-      inset: 46px;
-      border-radius: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      color: rgba(32, 35, 18, 0.6);
-      font-size: 1rem;
-      line-height: 1.8;
-      z-index: 1;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(220, 204, 167, 0.6), transparent 18%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.7), transparent 22%),
-        linear-gradient(180deg, rgba(247, 235, 214, 0.8), rgba(220, 204, 167, 0.75));
-    }
-
-    .hero-placeholder strong {
-      display: block;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.6rem;
-      color: var(--forest);
-      margin-bottom: 8px;
     }
 
     .section-shell {
@@ -297,11 +258,11 @@
       display: grid;
       grid-template-columns: 1.02fr 0.98fr;
       min-height: 760px;
-      background: rgba(255, 255, 255, 0.58);
+      background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(32, 35, 18, 0.08);
       border-radius: 34px;
       overflow: hidden;
-      box-shadow: 0 24px 50px rgba(32, 35, 18, 0.08);
+      box-shadow: 0 24px 50px rgba(32, 35, 18, 0.06);
       margin-bottom: 26px;
     }
 
@@ -309,8 +270,8 @@
       position: relative;
       min-height: 100%;
       background:
-        radial-gradient(circle at 24% 22%, rgba(255, 255, 255, 0.42), transparent 16%),
-        linear-gradient(140deg, rgba(247, 235, 214, 0.52), rgba(220, 204, 167, 0.92));
+        radial-gradient(circle at 24% 22%, rgba(255, 255, 255, 0.55), transparent 16%),
+        linear-gradient(140deg, rgba(247, 235, 214, 0.5), rgba(220, 204, 167, 0.82));
       overflow: hidden;
     }
 
@@ -335,9 +296,7 @@
         linear-gradient(140deg, rgba(247, 235, 214, 0.65), rgba(220, 204, 167, 0.85));
     }
 
-    .feature-fallback-inner {
-      max-width: 320px;
-    }
+    .feature-fallback-inner { max-width: 320px; }
 
     .feature-fallback-title {
       font-family: Georgia, "Times New Roman", serif;
@@ -347,7 +306,7 @@
     }
 
     .feature-content {
-      background: #efede7;
+      background: #f3f0ea;
       padding: 86px 72px;
       display: flex;
       align-items: center;
@@ -361,12 +320,12 @@
 
     .feature-title {
       margin: 0 0 26px;
-      font-family: Arial, Helvetica, sans-serif;
       font-size: clamp(3rem, 5vw, 5.2rem);
       line-height: 0.88;
       letter-spacing: -0.05em;
       font-weight: 800;
       color: var(--forest);
+      animation: fadeUp 0.85s ease both;
     }
 
     .feature-copy p {
@@ -374,6 +333,7 @@
       font-size: 1.02rem;
       line-height: 1.7;
       color: rgba(32, 35, 18, 0.7);
+      animation: fadeUp 1s ease both;
     }
 
     .feature-list {
@@ -387,7 +347,15 @@
 
     .feature-list li {
       margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.65s ease forwards;
     }
+
+    .feature-list li:nth-child(1) { animation-delay: 0.08s; }
+    .feature-list li:nth-child(2) { animation-delay: 0.16s; }
+    .feature-list li:nth-child(3) { animation-delay: 0.24s; }
+    .feature-list li:nth-child(4) { animation-delay: 0.32s; }
 
     .feature-button {
       margin-top: 34px;
@@ -426,9 +394,15 @@
     .summary-card {
       padding: 28px;
       border-radius: 26px;
-      background: rgba(255, 255, 255, 0.74);
+      background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(32, 35, 18, 0.08);
-      box-shadow: 0 16px 28px rgba(32, 35, 18, 0.06);
+      box-shadow: 0 16px 28px rgba(32, 35, 18, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 34px rgba(32, 35, 18, 0.08);
     }
 
     .summary-card h3 {
@@ -456,7 +430,7 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
       align-items: center;
-      box-shadow: 0 28px 54px rgba(32, 35, 18, 0.16);
+      box-shadow: 0 28px 54px rgba(32, 35, 18, 0.14);
     }
 
     .cta-shell h2 {
@@ -498,8 +472,41 @@
       font-size: 0.92rem;
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .brand-mark,
+      .nav-cta {
+        justify-self: center;
+      }
+    }
+
     @media (max-width: 1080px) {
-      .hero-grid,
       .split-feature,
       .cta-shell {
         grid-template-columns: 1fr;
@@ -515,22 +522,12 @@
     }
 
     @media (max-width: 820px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav ul {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-
       .hero {
         padding-top: 54px;
       }
 
-      .hero-visual {
-        min-height: 360px;
+      nav ul {
+        gap: 16px;
       }
 
       .split-feature {
@@ -563,15 +560,6 @@
         font-size: 2.8rem;
       }
 
-      .hero-visual::before {
-        inset: 14px;
-      }
-
-      .hero-placeholder {
-        inset: 28px;
-        padding: 18px;
-      }
-
       .feature-content {
         padding: 44px 22px;
       }
@@ -587,8 +575,6 @@
   </style>
 </head>
 <body>
-  <div class="topbar">the best professional development doesn&apos;t feel like training. It feels like growth.</div>
-
   <header>
     <div class="container nav">
       <div class="brand-mark">
@@ -601,15 +587,15 @@
 
       <nav>
         <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#education">Educational Consulting</a></li>
-          <li><a href="#corporate">Leadership &amp; Communication Consulting</a></li>
-          <li><a href="#about-us">About Us</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="educational-consulting.html">Educational Consulting</a></li>
+          <li><a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
-      <a href="#contact" class="nav-cta">Schedule a Consultation</a>
+      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
     </div>
   </header>
 
@@ -618,28 +604,19 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Communication. Leadership. Alignment.</span>
-          <h1>Helping schools and organizations grow through stronger leadership and clearer communication.</h1>
+          <h1>the best professional development doesn&apos;t feel like training. It feels like growth.</h1>
           <p>
             Olive Tree Consultants is a professional consulting firm led by Adam Dircksen. We partner with educational institutions and organizations to design practical, research-informed development that builds capacity, strengthens communication, and supports long-term growth.
           </p>
           <div class="hero-actions">
-            <a href="#education" class="btn btn-primary">Explore Educational Consulting</a>
-            <a href="#corporate" class="btn btn-secondary">Explore Corporate Consulting</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Homepage visual area">
-          <div class="hero-placeholder">
-            <div>
-              <strong>Fullscreen video area</strong>
-              This is where the homepage scroll-video sequence can go later. For now, the layout still looks polished even if no media loads.
-            </div>
+            <a href="educational-consulting.html" class="btn btn-primary">Explore Educational Consulting</a>
+            <a href="leadership-communication-consulting.html" class="btn btn-secondary">Explore Leadership &amp; Communication Consulting</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-shell" id="education">
+    <section class="section-shell reveal" id="education">
       <div class="container">
         <div class="split-feature">
           <div class="feature-media">
@@ -647,14 +624,14 @@
             <div class="feature-fallback" style="display:none;">
               <div class="feature-fallback-inner">
                 <div class="feature-fallback-title">Educational Consulting</div>
-                <div>Replace this with your chosen education image later. The section still keeps the right structure and styling in the meantime.</div>
+                <div>Upload your education image to the images folder and name it education-consulting.jpg to show it here.</div>
               </div>
             </div>
           </div>
 
           <div class="feature-content">
             <div class="feature-copy">
-              <h2 class="feature-title">Educational<br />Partnering</h2>
+              <h2 class="feature-title">Educational Consulting</h2>
               <p>
                 We partner with colleges, universities, and schools to strengthen academic excellence through collaborative, research-informed strategies tailored to the unique needs of educational environments.
               </p>
@@ -664,29 +641,29 @@
                 <li>Advancing strategic teaching and learning initiatives</li>
                 <li>Enhancing student learning outcomes through faculty support</li>
               </ul>
-              <a href="#" class="feature-button">Our Educational Consulting Services</a>
+              <a href="educational-consulting.html" class="feature-button">Our Educational Consulting Services</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-shell" id="corporate">
+    <section class="section-shell reveal" id="corporate">
       <div class="container">
         <div class="split-feature">
           <div class="feature-media">
-            <img src="images/corporate-consulting.jpg" alt="Leadership and communication consulting meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <img src="images/leadership-communication-consulting.jpg" alt="Leadership and communication consulting meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="feature-fallback" style="display:none;">
               <div class="feature-fallback-inner">
                 <div class="feature-fallback-title">Leadership &amp; Communication Consulting</div>
-                <div>Add your matching corporate photo here later. The layout is already ready for it.</div>
+                <div>Upload your leadership image to the images folder and name it leadership-communication-consulting.jpg to show it here.</div>
               </div>
             </div>
           </div>
 
           <div class="feature-content">
             <div class="feature-copy">
-              <h2 class="feature-title">Corporate<br />Consulting</h2>
+              <h2 class="feature-title">Leadership &amp;<br />Communication Consulting</h2>
               <p>
                 We help organizations improve how leaders communicate, make decisions, and engage their teams through tailored development that is grounded in real-world workplace needs.
               </p>
@@ -696,14 +673,14 @@
                 <li>Customized workshops and applied learning experiences</li>
                 <li>Professional development that creates measurable growth</li>
               </ul>
-              <a href="#" class="feature-button">Our Corporate Consulting Services</a>
+              <a href="leadership-communication-consulting.html" class="feature-button">Our Leadership &amp; Communication Consulting Services</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="summary-strip" id="about-us">
+    <section class="summary-strip reveal" id="about-us">
       <div class="container">
         <div class="summary-grid">
           <div class="summary-card">
@@ -722,18 +699,18 @@
       </div>
     </section>
 
-    <section class="cta-band" id="contact">
+    <section class="cta-band reveal" id="contact">
       <div class="container">
         <div class="cta-shell">
           <div>
             <h2>Let&apos;s strengthen your organization.</h2>
             <p>
-              This homepage is now set up with strong section structure, buttons, and image areas. Later, we can wire the buttons to full pages and bring back the three-part fullscreen scroll-video sequence for the top of the site.
+              The homepage is now cleaner, lighter, and ready for the real inner pages. The buttons and top navigation already point to the page files we&apos;ll create next.
             </p>
           </div>
           <div class="cta-actions">
-            <a href="mailto:adam@olivetreeconsultants.com" class="btn btn-primary">Contact Olive Tree Consultants</a>
-            <a href="#education" class="btn btn-secondary">View Home Sections</a>
+            <a href="contact.html" class="btn btn-primary">Contact Olive Tree Consultants</a>
+            <a href="about-us.html" class="btn btn-secondary">Learn More About Us</a>
           </div>
         </div>
       </div>
@@ -743,5 +720,20 @@
   <footer>
     <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
   </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
 </body>
 </html>
