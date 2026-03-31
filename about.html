@@ -22,21 +22,6 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      overflow-x: hidden;
-    }
-
-    .bg-leaf {
-      position: fixed;
-      border-radius: 100% 0 100% 0;
-      background: rgba(24,54,40,0.06);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .bg-leaf.l1 { width: 420px; height: 420px; left: -120px; top: 30%; transform: rotate(-18deg); }
-    .bg-leaf.l2 { width: 360px; height: 360px; right: -100px; top: 55%; transform: rotate(22deg); }
-    .bg-leaf.l3 { width: 300px; height: 300px; left: 20%; bottom: -120px; transform: rotate(10deg); }
-
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--forest);
@@ -44,6 +29,7 @@
         radial-gradient(circle at top left, rgba(216, 197, 155, 0.14), transparent 24%),
         radial-gradient(circle at bottom right, rgba(24, 54, 40, 0.04), transparent 24%),
         linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
+      overflow-x: hidden;
     }
 
     img { display: block; max-width: 100%; }
@@ -106,6 +92,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--forest);
+      font-family: Arial, Helvetica, sans-serif;
     }
     .brand-sub {
       margin-top: 4px;
@@ -228,6 +215,7 @@
       color: var(--forest);
       font-weight: 800;
       max-width: 14ch;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .about-header p {
@@ -270,6 +258,7 @@
         radial-gradient(circle at top left, rgba(255,255,255,0.58), transparent 18%),
         linear-gradient(145deg, rgba(248,243,232,0.8), rgba(216,197,155,0.72));
       overflow: hidden;
+      padding: 16px;
     }
 
     .person-photo-wrap img {
@@ -277,11 +266,12 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      border-radius: 18px;
     }
 
     .person-photo-fallback {
       position: absolute;
-      inset: 0;
+      inset: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -290,6 +280,7 @@
       color: rgba(24, 54, 40, 0.64);
       line-height: 1.7;
       font-size: 0.96rem;
+      border-radius: 18px;
     }
 
     .person-body {
@@ -302,6 +293,7 @@
       line-height: 1.1;
       color: var(--forest);
       font-weight: 800;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .person-body p {
@@ -400,7 +392,7 @@
             </div>
             <div class="person-body">
               <h2 class="person-name">Adam Dircksen</h2>
-              <p>Adam Dircksen is Executive Director of the Center for the Enhancement of Learning and Teaching at Purdue University Fort Wayne, where he leads a team of instructional designers and consultants and oversees professional development initiatives. He holds a master's degree in professional communication and brings extensive experience designing and facilitating workshops, consultations, and multi-session development programs for professionals and leaders. He works across multiple Purdue campuses, contributing to cross-campus alignment and collaboration in professional development, informing his ability to navigate complex organizations and coordinate efforts across diverse stakeholders. He brings a particular strength in identifying how communication challenges at one level connect to and affect performance at others, an approach that shapes both his leadership work and his consulting practice.</p>
+              <p>Adam Dircksen is Executive Director of the Center for the Enhancement of Learning and Teaching at Purdue University Fort Wayne, where he leads a team of instructional designers and consultants and oversees professional development initiatives. He holds a master's degree in professional communication and brings extensive experience designing and facilitating workshops, consultations, and multi-session development programs for professionals and leaders, with particular strengths in public speaking, persuasion, conflict, and negotiation. He works across multiple Purdue campuses and institutional contexts, contributing to cross-campus alignment and collaboration in professional development, experience that informs his ability to navigate complex organizations and coordinate efforts across diverse stakeholder groups. He brings a particular strength in identifying how communication challenges at one level connect to and affect performance at others, an approach that shapes both his leadership work and his consulting practice. His style is practical, collaborative, and results-oriented.</p>
             </div>
           </article>
 
