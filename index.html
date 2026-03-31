@@ -181,14 +181,14 @@
 
     .tree-side {
       position: absolute;
-      top: 40px;
-      width: 260px;
-      height: 520px;
-      opacity: 0.22;
+      top: -40px;
+      width: 780px;
+      height: 980px;
+      opacity: 0.34;
     }
 
-    .tree-side.left { left: 0; }
-    .tree-side.right { right: 0; transform: scaleX(-1); }
+    .tree-side.left { left: -250px; }
+    .tree-side.right { right: -250px; transform: scaleX(-1); }
 
     .tree-trunk,
     .tree-branch {
@@ -200,21 +200,23 @@
     .tree-trunk {
       left: 50%;
       bottom: 0;
-      width: 12px;
-      height: 300px;
+      width: 34px;
+      height: 640px;
       transform: translateX(-50%);
     }
 
-    .tree-branch.b1 { left: 118px; bottom: 210px; width: 90px; height: 8px; transform: rotate(-28deg); }
-    .tree-branch.b2 { left: 72px; bottom: 152px; width: 78px; height: 8px; transform: rotate(-42deg); }
-    .tree-branch.b3 { left: 136px; bottom: 132px; width: 76px; height: 8px; transform: rotate(22deg); }
-    .tree-branch.b4 { left: 126px; bottom: 255px; width: 72px; height: 8px; transform: rotate(32deg); }
+    .tree-branch.b1 { left: 390px; bottom: 470px; width: 260px; height: 16px; transform: rotate(-28deg); }
+    .tree-branch.b2 { left: 250px; bottom: 340px; width: 220px; height: 16px; transform: rotate(-42deg); }
+    .tree-branch.b3 { left: 425px; bottom: 300px; width: 220px; height: 16px; transform: rotate(22deg); }
+    .tree-branch.b4 { left: 418px; bottom: 560px; width: 210px; height: 16px; transform: rotate(32deg); }
+    .tree-branch.b5 { left: 320px; bottom: 610px; width: 180px; height: 14px; transform: rotate(-18deg); }
+    .tree-branch.b6 { left: 470px; bottom: 170px; width: 170px; height: 14px; transform: rotate(14deg); }
 
     .grow-leaf {
       position: absolute;
-      width: 44px;
-      height: 44px;
-      background: rgba(24, 54, 40, 0.16);
+      width: 72px;
+      height: 72px;
+      background: rgba(24, 54, 40, 0.24);
       border-radius: 100% 0 100% 0;
       transform: scale(0) rotate(var(--r, 0deg));
       transform-origin: center;
@@ -234,14 +236,52 @@
       border-radius: 999px;
     }
 
-    .tree-side .l1 { left: 150px; bottom: 286px; animation-delay: 0.4s; }
-    .tree-side .l2 { left: 90px; bottom: 218px; width: 36px; height: 36px; animation-delay: 1.2s; }
-    .tree-side .l3 { left: 56px; bottom: 164px; width: 34px; height: 34px; animation-delay: 2s; }
-    .tree-side .l4 { left: 162px; bottom: 184px; width: 38px; height: 38px; animation-delay: 2.8s; }
-    .tree-side .l5 { left: 172px; bottom: 236px; width: 34px; height: 34px; animation-delay: 3.6s; }
-    .tree-side .l6 { left: 130px; bottom: 332px; width: 30px; height: 30px; animation-delay: 4.4s; }
-    .tree-side .l7 { left: 74px; bottom: 264px; width: 28px; height: 28px; animation-delay: 5.2s; }
-    .tree-side .l8 { left: 196px; bottom: 158px; width: 28px; height: 28px; animation-delay: 6s; }
+    .tree-side .l1 { left: 470px; bottom: 620px; animation-delay: 0.4s; }
+    .tree-side .l2 { left: 300px; bottom: 500px; width: 60px; height: 60px; animation-delay: 1.2s; }
+    .tree-side .l3 { left: 210px; bottom: 360px; width: 56px; height: 56px; animation-delay: 2s; }
+    .tree-side .l4 { left: 500px; bottom: 410px; width: 64px; height: 64px; animation-delay: 2.8s; }
+    .tree-side .l5 { left: 535px; bottom: 520px; width: 58px; height: 58px; animation-delay: 3.6s; }
+    .tree-side .l6 { left: 390px; bottom: 730px; width: 52px; height: 52px; animation-delay: 4.4s; }
+    .tree-side .l7 { left: 250px; bottom: 610px; width: 48px; height: 48px; animation-delay: 5.2s; }
+    .tree-side .l8 { left: 610px; bottom: 330px; width: 46px; height: 46px; animation-delay: 6s; }
+    .tree-side .l9 { left: 555px; bottom: 655px; width: 54px; height: 54px; animation-delay: 4.8s; }
+    .tree-side .l10 { left: 322px; bottom: 265px; width: 50px; height: 50px; animation-delay: 6.8s; }
+    .tree-side .l11 { left: 430px; bottom: 230px; width: 42px; height: 42px; animation-delay: 7.3s; }
+    .tree-side .l12 { left: 180px; bottom: 470px; width: 44px; height: 44px; animation-delay: 5.8s; }
+
+    .page-leaves {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .page-leaf {
+      position: absolute;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24, 54, 40, 0.08);
+      box-shadow: 0 14px 28px rgba(24, 54, 40, 0.03);
+    }
+
+    .page-leaf.big1 { width: 110px; height: 110px; left: 4%; top: 38%; transform: rotate(-18deg); }
+    .page-leaf.big2 { width: 88px; height: 88px; right: 6%; top: 54%; transform: rotate(24deg); }
+    .page-leaf.big3 { width: 72px; height: 72px; left: 12%; top: 78%; transform: rotate(12deg); }
+    .page-leaf.big4 { width: 96px; height: 96px; right: 10%; top: 86%; transform: rotate(-22deg); }
+
+    .hero-sparkle-leaf {
+      position: absolute;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24, 54, 40, 0.26);
+      z-index: 1;
+      box-shadow: 0 10px 18px rgba(24, 54, 40, 0.05);
+      animation: tinyLeafPulse 4s ease-in-out infinite;
+    }
+
+    .hero-sparkle-leaf.s1 { width: 22px; height: 22px; left: 27%; top: 112px; transform: rotate(-18deg); }
+    .hero-sparkle-leaf.s2 { width: 18px; height: 18px; right: 28%; top: 126px; transform: rotate(26deg); animation-delay: .8s; }
+    .hero-sparkle-leaf.s3 { width: 16px; height: 16px; left: 18%; top: 190px; transform: rotate(10deg); animation-delay: 1.4s; }
+    .hero-sparkle-leaf.s4 { width: 20px; height: 20px; right: 18%; top: 188px; transform: rotate(-20deg); animation-delay: 2s; }
 
     .hero-grid {
       position: relative;
@@ -294,7 +334,7 @@
       letter-spacing: -0.045em;
       color: var(--forest);
       font-weight: 800;
-      max-width: 22.4ch;
+      max-width: 26.88ch;
     }
 
     .hero-copy p {
@@ -411,7 +451,7 @@
     .feature-title {
       margin: 0 0 18px;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(2.1rem, 3.5vw, 3.64rem);
+      font-size: clamp(1.68rem, 2.8vw, 2.91rem);
       line-height: 0.92;
       letter-spacing: -0.05em;
       font-weight: 800;
@@ -600,6 +640,11 @@
       }
     }
 
+    @keyframes tinyLeafPulse {
+      0%, 100% { opacity: 0.2; transform: translateY(0) rotate(var(--rr, 0deg)); }
+      50% { opacity: 0.34; transform: translateY(6px) rotate(calc(var(--rr, 0deg) + 8deg)); }
+    }
+
     @media (max-width: 1180px) {
       .nav {
         grid-template-columns: 1fr;
@@ -691,6 +736,12 @@
   </style>
 </head>
 <body>
+  <div class="page-leaves" aria-hidden="true">
+    <span class="page-leaf big1"></span>
+    <span class="page-leaf big2"></span>
+    <span class="page-leaf big3"></span>
+    <span class="page-leaf big4"></span>
+  </div>
   <header>
     <div class="container nav">
       <a href="index.html" class="brand-mark" style="text-decoration:none;">
@@ -716,6 +767,10 @@
 
   <main>
     <section class="hero">
+      <span class="hero-sparkle-leaf s1" style="--rr:-18deg;"></span>
+      <span class="hero-sparkle-leaf s2" style="--rr:26deg;"></span>
+      <span class="hero-sparkle-leaf s3" style="--rr:10deg;"></span>
+      <span class="hero-sparkle-leaf s4" style="--rr:-20deg;"></span>
       <div class="tree-growth" aria-hidden="true">
         <div class="tree-side left">
           <div class="tree-trunk"></div>
@@ -723,6 +778,8 @@
           <div class="tree-branch b2"></div>
           <div class="tree-branch b3"></div>
           <div class="tree-branch b4"></div>
+          <div class="tree-branch b5"></div>
+          <div class="tree-branch b6"></div>
           <span class="grow-leaf l1" style="--r:-18deg;"></span>
           <span class="grow-leaf l2" style="--r:12deg;"></span>
           <span class="grow-leaf l3" style="--r:-32deg;"></span>
@@ -731,6 +788,10 @@
           <span class="grow-leaf l6" style="--r:-8deg;"></span>
           <span class="grow-leaf l7" style="--r:16deg;"></span>
           <span class="grow-leaf l8" style="--r:30deg;"></span>
+          <span class="grow-leaf l9" style="--r:-12deg;"></span>
+          <span class="grow-leaf l10" style="--r:18deg;"></span>
+          <span class="grow-leaf l11" style="--r:28deg;"></span>
+          <span class="grow-leaf l12" style="--r:-26deg;"></span>
         </div>
         <div class="tree-side right">
           <div class="tree-trunk"></div>
@@ -738,6 +799,8 @@
           <div class="tree-branch b2"></div>
           <div class="tree-branch b3"></div>
           <div class="tree-branch b4"></div>
+          <div class="tree-branch b5"></div>
+          <div class="tree-branch b6"></div>
           <span class="grow-leaf l1" style="--r:-18deg;"></span>
           <span class="grow-leaf l2" style="--r:12deg;"></span>
           <span class="grow-leaf l3" style="--r:-32deg;"></span>
@@ -746,6 +809,10 @@
           <span class="grow-leaf l6" style="--r:-8deg;"></span>
           <span class="grow-leaf l7" style="--r:16deg;"></span>
           <span class="grow-leaf l8" style="--r:30deg;"></span>
+          <span class="grow-leaf l9" style="--r:-12deg;"></span>
+          <span class="grow-leaf l10" style="--r:18deg;"></span>
+          <span class="grow-leaf l11" style="--r:28deg;"></span>
+          <span class="grow-leaf l12" style="--r:-26deg;"></span>
         </div>
       </div>
 
