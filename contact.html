@@ -8,7 +8,6 @@
     :root {
       --forest: #183628;
       --cream: #f8f3e8;
-      --panel: #ffffff;
     }
 
     * { box-sizing: border-box; }
@@ -17,44 +16,96 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--forest);
-      background: linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
+      background:
+        radial-gradient(circle at top left, rgba(216, 197, 155, 0.14), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(24, 54, 40, 0.04), transparent 24%),
+        linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
     }
 
     .container {
-      width: min(1100px, calc(100% - 40px));
+      width: min(1280px, calc(100% - 40px));
       margin: 0 auto;
     }
 
+    /* SAME HEADER AS OTHER PAGES */
     header {
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 253, 249, 0.56);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(24, 54, 40, 0.08);
+      box-shadow: 0 10px 24px rgba(24, 54, 40, 0.04);
     }
 
     .nav {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
+      gap: 24px;
       padding: 16px 0;
     }
 
-    .brand {
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      line-height: 1.05;
+    }
+
+    .brand-title {
+      font-size: 1.18rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-decoration: none;
-      color: var(--forest);
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: rgba(24, 54, 40, 0.68);
+      margin-top: 4px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
     }
 
     nav a {
-      margin-left: 18px;
       text-decoration: none;
       font-weight: 600;
-      color: rgba(0,0,0,0.7);
+      color: rgba(24, 54, 40, 0.82);
     }
 
-    nav a.active { color: var(--forest); }
+    nav a.active {
+      color: var(--forest);
+    }
 
+    .nav-cta {
+      background: var(--forest);
+      color: var(--cream);
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* HERO */
     .hero {
       padding: 120px 0 100px;
       text-align: center;
@@ -81,10 +132,7 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 1rem;
-      transition: transform 0.2s ease;
     }
-
-    .btn:hover { transform: translateY(-2px); }
 
     footer {
       text-align: center;
@@ -98,12 +146,23 @@
 
 <header>
   <div class="container nav">
-    <a href="index.html" class="brand">Olive Tree Consultants</a>
+    <a href="index.html" class="brand-mark">
+      <img src="images/olive-tree-logo.png" class="brand-logo">
+      <div class="brand-text">
+        <div class="brand-title">Olive Tree Consultants</div>
+        <div class="brand-sub">Fort Wayne, Indiana</div>
+      </div>
+    </a>
+
     <nav>
-      <a href="educational-consulting.html">Educational Consulting</a>
-      <a href="leadership-communication-consulting.html">Leadership & Communication</a>
-      <a href="about.html">About</a>
+      <ul>
+        <li><a href="educational-consulting.html">Educational Consulting</a></li>
+        <li><a href="leadership-communication-consulting.html">Leadership & Communication Consulting</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
     </nav>
+
+    <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
   </div>
 </header>
 
