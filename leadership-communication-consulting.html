@@ -109,13 +109,14 @@
       color: var(--forest);
       font-family: Arial, Helvetica, sans-serif;
     }
+    .brand-title-mobile { display: none; }
     .brand-sub {
       margin-top: 4px;
       font-size: 0.82rem;
       color: rgba(24, 54, 40, 0.68);
     }
 
-    nav ul {
+    .desktop-nav ul {
       list-style: none;
       display: flex;
       gap: 22px;
@@ -126,7 +127,7 @@
       flex-wrap: wrap;
     }
 
-    nav a {
+    .desktop-nav a {
       text-decoration: none;
       font-size: 0.93rem;
       font-weight: 600;
@@ -135,8 +136,8 @@
       white-space: nowrap;
     }
 
-    nav a:hover,
-    nav a.active {
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
       color: var(--forest);
       transform: translateY(-1px);
     }
@@ -158,6 +159,11 @@
     }
 
     .nav-cta:hover { transform: translateY(-2px); }
+
+    .menu-toggle,
+    .mobile-menu {
+      display: none;
+    }
 
     .hero {
       padding: 86px 0 30px;
@@ -181,31 +187,6 @@
       max-width: 980px;
       text-align: center;
       margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(24, 54, 40, 0.08);
-      color: rgba(24, 54, 40, 0.76);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 22px rgba(24, 54, 40, 0.05);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 100% 0 100% 0;
-      background: var(--forest);
-      transform: rotate(-22deg);
     }
 
     h1 {
@@ -409,6 +390,7 @@
       padding: 0 0 40px;
       color: rgba(24, 54, 40, 0.6);
       font-size: 0.92rem;
+      text-align: center;
     }
 
     @media (max-width: 1180px) {
@@ -418,7 +400,7 @@
       }
 
       .brand-mark,
-      .nav-cta {
+      .desktop-cta {
         justify-self: center;
       }
     }
@@ -434,8 +416,127 @@
       }
     }
 
+    @media (max-width: 900px) {
+      .nav {
+        grid-template-columns: 1fr auto 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .desktop-nav,
+      .desktop-cta {
+        display: none;
+      }
+
+      .brand-mark {
+        justify-self: center;
+        grid-column: 2;
+      }
+
+      .brand-title-full {
+        display: none;
+      }
+
+      .brand-title-mobile {
+        display: inline;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        justify-self: end;
+        grid-column: 3;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--forest);
+        border-radius: 999px;
+      }
+
+      .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: min(1280px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+      }
+
+      header.menu-open {
+        min-height: 100vh;
+        background: rgba(255, 253, 249, 0.72);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+      }
+
+      header.menu-open .mobile-menu {
+        gap: 26px;
+        max-height: 70vh;
+        opacity: 1;
+        padding: 18px 0 32px;
+        pointer-events: auto;
+      }
+
+      .mobile-menu a {
+        text-decoration: none;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--forest);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      header.menu-open .mobile-menu a {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      header.menu-open .mobile-menu a:nth-child(1) { transition-delay: 0.03s; }
+      header.menu-open .mobile-menu a:nth-child(2) { transition-delay: 0.07s; }
+      header.menu-open .mobile-menu a:nth-child(3) { transition-delay: 0.11s; }
+      header.menu-open .mobile-menu a:nth-child(4) { transition-delay: 0.15s; }
+
+      .mobile-cta-link {
+        margin-top: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--forest);
+        color: var(--cream) !important;
+        width: fit-content;
+      }
+    }
+
     @media (max-width: 720px) {
-      .container {
+      .container,
+      .mobile-menu {
         width: min(100% - 24px, 1280px);
       }
 
@@ -469,12 +570,15 @@
         <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
         <div class="brand-logo-fallback" aria-hidden="true"></div>
         <div class="brand-text">
-          <div class="brand-title">Olive Tree Consultants</div>
+          <div class="brand-title">
+            <span class="brand-title-full">Olive Tree Consultants</span>
+            <span class="brand-title-mobile">Olive Tree</span>
+          </div>
           <div class="brand-sub">Fort Wayne, Indiana</div>
         </div>
       </a>
 
-      <nav>
+      <nav class="desktop-nav">
         <ul>
           <li><a href="educational-consulting.html">Educational Consulting</a></li>
           <li><a href="leadership-communication-consulting.html" class="active">Leadership &amp; Communication Consulting</a></li>
@@ -482,7 +586,20 @@
         </ul>
       </nav>
 
-      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
+      <a href="contact.html" class="nav-cta desktop-cta">Schedule a Consultation</a>
+
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu">
+      <a href="educational-consulting.html">Educational Consulting</a>
+      <a href="leadership-communication-consulting.html" class="active">Leadership &amp; Communication Consulting</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="mobile-cta-link">Schedule a Consultation</a>
     </div>
   </header>
 
@@ -614,7 +731,19 @@
   </main>
 
   <footer>
-    <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
+    <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana | A Mahlan Media Website</div>
   </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const header = document.querySelector('header');
+
+    if (menuToggle && header) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = header.classList.toggle('menu-open');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>
