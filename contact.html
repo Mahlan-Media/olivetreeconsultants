@@ -7,10 +7,16 @@
   <style>
     :root {
       --forest: #183628;
+      --forest-soft: #234635;
+      --sand: #d8c59b;
       --cream: #f8f3e8;
+      --mist: #f2ede3;
+      --panel: #ece7dc;
+      --white: #fffdf9;
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -20,14 +26,31 @@
         radial-gradient(circle at top left, rgba(216, 197, 155, 0.14), transparent 24%),
         radial-gradient(circle at bottom right, rgba(24, 54, 40, 0.04), transparent 24%),
         linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
+      overflow-x: hidden;
     }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .bg-leaf {
+      position: fixed;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24,54,40,0.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-leaf.l1 { width: 420px; height: 420px; left: -120px; top: 30%; transform: rotate(-18deg); }
+    .bg-leaf.l2 { width: 360px; height: 360px; right: -100px; top: 55%; transform: rotate(22deg); }
+    .bg-leaf.l3 { width: 300px; height: 300px; left: 20%; bottom: -120px; transform: rotate(10deg); }
 
     .container {
       width: min(1280px, calc(100% - 40px));
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    /* SAME HEADER AS OTHER PAGES */
     header {
       position: sticky;
       top: 0;
@@ -51,6 +74,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
       text-decoration: none;
     }
 
@@ -58,23 +82,33 @@
       width: 42px;
       height: 42px;
       object-fit: contain;
+      flex: 0 0 auto;
     }
 
-    .brand-text {
-      line-height: 1.05;
+    .brand-logo-fallback {
+      width: 28px;
+      height: 28px;
+      border-radius: 100% 0 100% 0;
+      background: var(--forest);
+      transform: rotate(-18deg);
+      box-shadow: 10px 10px 0 -7px rgba(216, 197, 155, 0.9);
+      flex: 0 0 auto;
+      display: none;
     }
 
+    .brand-text { line-height: 1.05; }
     .brand-title {
       font-size: 1.18rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: var(--forest);
+      font-family: Arial, Helvetica, sans-serif;
     }
-
     .brand-sub {
+      margin-top: 4px;
       font-size: 0.82rem;
       color: rgba(24, 54, 40, 0.68);
-      margin-top: 4px;
     }
 
     nav ul {
@@ -83,99 +117,187 @@
       gap: 22px;
       margin: 0;
       padding: 0;
+      align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     nav a {
       text-decoration: none;
+      font-size: 0.93rem;
       font-weight: 600;
       color: rgba(24, 54, 40, 0.82);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
     }
 
+    nav a:hover,
     nav a.active {
       color: var(--forest);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
       background: var(--forest);
       color: var(--cream);
       padding: 12px 18px;
       border-radius: 999px;
-      text-decoration: none;
       font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 16px 28px rgba(24, 54, 40, 0.14);
+      transition: transform 0.25s ease;
+      white-space: nowrap;
     }
 
-    /* HERO */
+    .nav-cta:hover { transform: translateY(-2px); }
+
     .hero {
-      padding: 120px 0 100px;
+      position: relative;
+      padding: 88px 0 80px;
+      overflow: hidden;
       text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -120px;
+      top: -60px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 197, 155, 0.22), rgba(216, 197, 155, 0));
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -20px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24, 54, 40, 0.06), rgba(24, 54, 40, 0));
+      pointer-events: none;
     }
 
     .hero-copy {
       max-width: 760px;
       margin: 0 auto;
-    }
-
-    .hero-subtext {
-      margin-top: 10px;
-      font-size: 1.05rem;
-      color: rgba(24,54,40,0.75);
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
-      font-size: 2.6rem;
-      margin-bottom: 18px;
+      margin: 0 auto 18px;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--forest);
+      font-weight: 800;
+      max-width: 16ch;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     p {
       max-width: 600px;
-      margin: 0 auto 30px;
-      line-height: 1.8;
-      color: rgba(0,0,0,0.7);
+      margin: 0 auto 22px;
+      line-height: 1.9;
+      color: rgba(24, 54, 40, 0.78);
+      font-size: 1.05rem;
+    }
+
+    .hero-subtext {
+      margin-top: 0;
+      font-size: 1.05rem;
+      color: rgba(24,54,40,0.75);
     }
 
     .btn {
-      display: inline-block;
-      padding: 16px 26px;
-      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 22px;
+      border-radius: 16px;
       background: var(--forest);
       color: var(--cream);
       text-decoration: none;
       font-weight: 700;
       font-size: 1rem;
+      box-shadow: 0 18px 30px rgba(24, 54, 40, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
+
+    .btn:hover { transform: translateY(-2px); }
 
     footer {
       text-align: center;
-      padding: 40px 0;
-      font-size: 0.9rem;
-      color: rgba(0,0,0,0.6);
+      padding: 0 0 40px;
+      font-size: 0.92rem;
+      color: rgba(24, 54, 40, 0.6);
+    }
+
+    @media (max-width: 1180px) {
+      .nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .brand-mark,
+      .nav-cta {
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        max-width: 16ch;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="bg-leaf l1"></div>
+  <div class="bg-leaf l2"></div>
+  <div class="bg-leaf l3"></div>
 
 <header>
-  <div class="container nav">
-    <a href="index.html" class="brand-mark">
-      <img src="images/olive-tree-logo.png" class="brand-logo">
-      <div class="brand-text">
-        <div class="brand-title">Olive Tree Consultants</div>
-        <div class="brand-sub">Fort Wayne, Indiana</div>
-      </div>
-    </a>
+    <div class="container nav">
+      <a href="index.html" class="brand-mark">
+        <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div class="brand-logo-fallback" aria-hidden="true"></div>
+        <div class="brand-text">
+          <div class="brand-title">Olive Tree Consultants</div>
+          <div class="brand-sub">Fort Wayne, Indiana</div>
+        </div>
+      </a>
 
-    <nav>
-      <ul>
-        <li><a href="educational-consulting.html">Educational Consulting</a></li>
-        <li><a href="leadership-communication-consulting.html">Leadership & Communication Consulting</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li><a href="educational-consulting.html">Educational Consulting</a></li>
+          <li><a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
 
-    <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
-  </div>
-</header>
+      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
+    </div>
+  </header>
 
 <main>
   <section class="hero">
