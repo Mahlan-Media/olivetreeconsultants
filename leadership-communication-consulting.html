@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership & Communication Consulting | Olive Tree Consultants</title>
+  <meta
+    name="description"
+    content="Leadership and communication consulting from Olive Tree Consultants for organizations seeking stronger alignment, trust, and communication across every level." 
+  />
+  <style>
+    :root {
+      --forest: #183628;
+      --forest-soft: #234635;
+      --sand: #d8c59b;
+      --cream: #f8f3e8;
+      --mist: #f2ede3;
+      --panel: #ece7dc;
+      --white: #fffdf9;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--forest);
+      background:
+        radial-gradient(circle at top left, rgba(216, 197, 155, 0.14), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(24, 54, 40, 0.04), transparent 24%),
+        linear-gradient(180deg, #fcfbf8 0%, #f7f4ee 100%);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .bg-leaf {
+      position: fixed;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24,54,40,0.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-leaf.l1 { width: 420px; height: 420px; left: -120px; top: 30%; transform: rotate(-18deg); }
+    .bg-leaf.l2 { width: 360px; height: 360px; right: -100px; top: 55%; transform: rotate(22deg); }
+    .bg-leaf.l3 { width: 300px; height: 300px; left: 20%; bottom: -120px; transform: rotate(10deg); }
+
+    .container {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 253, 249, 0.56);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(24, 54, 40, 0.08);
+      box-shadow: 0 10px 24px rgba(24, 54, 40, 0.04);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo-fallback {
+      width: 28px;
+      height: 28px;
+      border-radius: 100% 0 100% 0;
+      background: var(--forest);
+      transform: rotate(-18deg);
+      box-shadow: 10px 10px 0 -7px rgba(216, 197, 155, 0.9);
+      flex: 0 0 auto;
+      display: none;
+    }
+
+    .brand-text { line-height: 1.05; }
+    .brand-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .brand-sub {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: rgba(24, 54, 40, 0.68);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: rgba(24, 54, 40, 0.82);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--forest);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: var(--forest);
+      color: var(--cream);
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 16px 28px rgba(24, 54, 40, 0.14);
+      transition: transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover { transform: translateY(-2px); }
+
+    .hero {
+      padding: 86px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -120px;
+      top: -60px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 197, 155, 0.22), rgba(216, 197, 155, 0));
+      pointer-events: none;
+    }
+
+    .hero-head {
+      max-width: 980px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      color: rgba(24, 54, 40, 0.76);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 22px rgba(24, 54, 40, 0.05);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 100% 0 100% 0;
+      background: var(--forest);
+      transform: rotate(-22deg);
+    }
+
+    h1 {
+      margin: 22px auto 18px;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--forest);
+      font-weight: 800;
+      max-width: 16ch;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hero-head p {
+      margin: 0 auto;
+      max-width: 980px;
+      font-size: 1.06rem;
+      line-height: 1.95;
+      color: rgba(24, 54, 40, 0.78);
+    }
+
+    .section {
+      padding: 18px 0 0;
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 18px 36px rgba(24, 54, 40, 0.05);
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 1.9rem;
+      line-height: 1.02;
+      font-weight: 800;
+      color: var(--forest);
+    }
+
+    .content-card p {
+      margin: 0;
+      color: rgba(24, 54, 40, 0.76);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .content-card p + p {
+      margin-top: 16px;
+    }
+
+    .bullet-list {
+      margin: 18px 0 0;
+      padding-left: 22px;
+      color: rgba(24, 54, 40, 0.78);
+      line-height: 1.7;
+    }
+
+    .bullet-list li {
+      margin-bottom: 12px;
+    }
+
+    .photo-strip {
+      padding: 24px 0 0;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .photo-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 36px rgba(24, 54, 40, 0.05);
+    }
+
+    .photo-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3.2;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.58), transparent 18%),
+        linear-gradient(145deg, rgba(248,243,232,0.8), rgba(216,197,155,0.72));
+      padding: 18px;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 18px;
+    }
+
+    .photo-fallback {
+      position: absolute;
+      inset: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: rgba(24, 54, 40, 0.64);
+      line-height: 1.7;
+      font-size: 0.96rem;
+      border-radius: 18px;
+    }
+
+    .photo-body {
+      padding: 18px 20px 22px;
+    }
+
+    .photo-body h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--forest);
+    }
+
+    .photo-body p {
+      margin: 0;
+      color: rgba(24, 54, 40, 0.74);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    .cta-band {
+      padding: 24px 0 84px;
+    }
+
+    .cta-shell {
+      background: var(--forest);
+      color: var(--cream);
+      border-radius: 34px;
+      padding: 50px 48px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      box-shadow: 0 28px 54px rgba(24, 54, 40, 0.14);
+    }
+
+    .cta-shell h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 800;
+      line-height: 0.98;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .cta-shell p {
+      margin: 0;
+      max-width: 680px;
+      color: rgba(248, 243, 232, 0.82);
+      line-height: 1.9;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--cream);
+      color: var(--forest);
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(248, 243, 232, 0.16);
+      color: var(--cream);
+    }
+
+    footer {
+      padding: 0 0 40px;
+      color: rgba(24, 54, 40, 0.6);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1180px) {
+      .nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .brand-mark,
+      .nav-cta {
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .photo-grid,
+      .cta-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        max-width: 18ch;
+      }
+
+      .content-card {
+        padding: 24px;
+      }
+
+      .cta-shell {
+        padding: 40px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-leaf l1"></div>
+  <div class="bg-leaf l2"></div>
+  <div class="bg-leaf l3"></div>
+
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand-mark" style="text-decoration:none;">
+        <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div class="brand-logo-fallback" aria-hidden="true"></div>
+        <div class="brand-text">
+          <div class="brand-title">Olive Tree Consultants</div>
+          <div class="brand-sub">Fort Wayne, Indiana</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="educational-consulting.html">Educational Consulting</a></li>
+          <li><a href="leadership-communication-consulting.html" class="active">Leadership &amp; Communication Consulting</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-head">
+          <span class="eyebrow">Leadership &amp; Communication Consulting</span>
+          <h1>Leadership &amp; Communication Consulting</h1>
+          <p>
+            Most organizations know when communication is a problem. They see it in the refresh meeting where the message didn't land. In the all-hands event where employees left with more questions than answers. In the gap between what leadership intended to communicate and what employees actually heard. What they don't always have is a clear, practical path to closing that gap, one that goes deeper than a one-day workshop and produces results that last.
+          </p>
+          <p style="margin-top:16px;">
+            Olive Tree Consultants works with organizations to strengthen how leaders at every level communicate, building the structure, clarity, confidence, and credibility that drive alignment, trust, and follow-through across the organization.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-grid">
+        <article class="content-card">
+          <h2 class="section-title">What We Do</h2>
+          <p>
+            We partner with organizations to design and deliver communication development programs built specifically around your leaders, your culture, and your most important communication challenges. Engagements begin with a structured needs assessment process that ensures the work reflects real organizational priorities rather than a generic curriculum.
+          </p>
+          <ul class="bullet-list">
+            <li><strong>Frontline and production leadership communication:</strong> Helping operational leaders communicate priorities and expectations with greater clarity and consistency in team-facing settings</li>
+            <li><strong>Executive communication development:</strong> Strengthening how senior leaders communicate in high-visibility settings and the interactions that shape employee trust and organizational alignment</li>
+            <li><strong>Communication needs assessment:</strong> Identifying where communication breakdowns are occurring, why, and where development will have the greatest impact</li>
+            <li><strong>Individual communication consultations:</strong> Personalized coaching and feedback tied to each leader's specific communication goals and needs</li>
+            <li><strong>Impact assessment and reporting:</strong> Measuring whether communication is actually improving and providing leadership with clear, evidence-based reporting on what changed</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2 class="section-title">Our Approach</h2>
+          <p>
+            We start where most communication consulting programs don't, with a genuine understanding of your organization. Before we design anything, we listen. We gather input from leaders, employees, and stakeholders to understand the specific communication challenges, contexts, and goals that should shape the engagement. What we build reflects what we learn.
+          </p>
+          <p>
+            Nothing we deliver is drawn from a pre-existing curriculum. Every session, every scenario, every practice activity is designed around the real communication situations your leaders face, the refresh meeting, the company-wide event, the difficult question from the floor, the message that needs to carry across three organizational levels without losing its meaning.
+          </p>
+          <p>
+            We also measure. Each engagement includes an assessment component that tells you whether communication is improving, not through assumption, but through data gathered from the people most directly affected.
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h2 class="section-title">What to Expect</h2>
+          <ul class="bullet-list" style="margin-top:0;">
+            <li>Leaders communicate more clearly, confidently, and credibly in the settings that matter most</li>
+            <li>Employees experience leadership communication as more direct, responsive, and trustworthy</li>
+            <li>Messages translate consistently across organizational levels — from the executive suite to the front line</li>
+            <li>Leaders handle high-visibility moments, difficult questions, and unexpected pushback with greater composure and effectiveness</li>
+            <li>Organizations gain a measurable picture of where communication is improving and where continued development is most needed</li>
+          </ul>
+        </article>
+
+        <article class="content-card">
+          <h2 class="section-title">Why Olive Tree</h2>
+          <p>
+            We are a locally rooted boutique consultancy founded by communication and professional development professionals at Purdue University Fort Wayne. We bring academic expertise in communication, organizational behavior, and leadership development, and we bring it without the overhead, geographic distance, or rigidity of a larger firm.
+          </p>
+          <p>
+            Our team has spent decades studying and teaching communication at the highest levels of academic rigor. We have also spent those same decades working alongside real leaders in real organizations, which means we know the difference between communication theory and what actually works when you are standing in front of your full team, wondering if your message is landing.
+          </p>
+          <p>
+            Fort Wayne and the surrounding region is where we live and work. The organizations and institutions here are not case studies to us. They are our community, and strengthening how they communicate is work we take seriously and personally value.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="photo-strip">
+      <div class="container">
+        <div class="photo-grid">
+          <article class="photo-card">
+            <div class="photo-wrap">
+              <img src="images/leadership-communication-consulting-1.jpg" alt="Leadership communication workshop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-1.jpg</strong></div>
+            </div>
+            <div class="photo-body">
+              <h3>Leadership Communication</h3>
+              <p>Use this space for a leadership workshop, team briefing, or communication training image.</p>
+            </div>
+          </article>
+
+          <article class="photo-card">
+            <div class="photo-wrap">
+              <img src="images/leadership-communication-consulting-2.jpg" alt="Executive communication meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-2.jpg</strong></div>
+            </div>
+            <div class="photo-body">
+              <h3>Executive Alignment</h3>
+              <p>Use this space for executive communication, all-hands messaging, or leadership strategy work.</p>
+            </div>
+          </article>
+
+          <article class="photo-card">
+            <div class="photo-wrap">
+              <img src="images/leadership-communication-consulting-3.jpg" alt="Organizational communication support" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-3.jpg</strong></div>
+            </div>
+            <div class="photo-body">
+              <h3>Organizational Communication</h3>
+              <p>Use this space for employee engagement, production leadership, or communication coaching images.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-shell">
+          <div>
+            <h2>Let's Talk</h2>
+            <p>
+              Every engagement starts with a conversation. If your organization is ready to invest in communication development that is built around your people and produces results you can point to, we would be glad to hear from you.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+            <a href="mailto:adam@olivetreeconsultants.org" class="btn btn-secondary">Email Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
+  </footer>
+</body>
+</html>
