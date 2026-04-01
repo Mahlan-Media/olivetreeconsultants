@@ -266,7 +266,7 @@
 
     @media (max-width: 900px) {
       .nav {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr auto 1fr;
         gap: 14px;
         align-items: center;
       }
@@ -277,7 +277,8 @@
       }
 
       .brand-mark {
-        justify-self: start;
+        justify-self: center;
+        grid-column: 2;
       }
 
       .brand-title-full {
@@ -304,6 +305,8 @@
         border: 0;
         background: transparent;
         cursor: pointer;
+        justify-self: end;
+        grid-column: 3;
       }
 
       .menu-toggle span {
@@ -315,10 +318,18 @@
       }
 
       .mobile-menu {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         width: min(1280px, calc(100% - 40px));
         margin: 0 auto;
-        padding: 12px 0 28px;
+        padding: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
       }
 
       header.menu-open {
@@ -329,9 +340,21 @@
       }
 
       header.menu-open .mobile-menu {
-        display: flex;
-        flex-direction: column;
         gap: 26px;
+        max-height: 70vh;
+        opacity: 1;
+        padding: 18px 0 32px;
+        pointer-events: auto;
+      }
+
+      .mobile-menu a {
+        text-decoration: none;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--forest);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
       }
 
       header.menu-open .mobile-menu a {
@@ -344,15 +367,6 @@
       header.menu-open .mobile-menu a:nth-child(2) { transition-delay: 0.07s; }
       header.menu-open .mobile-menu a:nth-child(3) { transition-delay: 0.11s; }
       header.menu-open .mobile-menu a:nth-child(4) { transition-delay: 0.15s; }
-
-      .mobile-menu a {
-        text-decoration: none;
-        font-size: 1.18rem;
-        font-weight: 700;
-        color: var(--forest);
-        opacity: 0;
-        transform: translateY(10px);
-      }
 
       .mobile-cta-link {
         margin-top: 10px;
