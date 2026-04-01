@@ -36,9 +36,32 @@
     img { display: block; max-width: 100%; }
     a { color: inherit; }
 
+    .page-leaves {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .page-leaf {
+      position: absolute;
+      border-radius: 100% 0 100% 0;
+      background: rgba(24, 54, 40, 0.08);
+      box-shadow: 0 14px 28px rgba(24, 54, 40, 0.03);
+    }
+
+    .page-leaf.hero-left { width: 150px; height: 150px; left: 6%; top: 90px; transform: rotate(-18deg); }
+    .page-leaf.hero-right { width: 118px; height: 118px; right: 8%; top: 110px; transform: rotate(24deg); }
+    .page-leaf.mid-left { width: 120px; height: 120px; left: 4%; top: 48%; transform: rotate(-16deg); }
+    .page-leaf.mid-right { width: 92px; height: 92px; right: 6%; top: 66%; transform: rotate(22deg); }
+    .page-leaf.bottom-left { width: 108px; height: 108px; left: 12%; bottom: 7%; transform: rotate(10deg); }
+
     .container {
       width: min(1280px, calc(100% - 40px));
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -155,7 +178,7 @@
 
     .hero {
       position: relative;
-      padding: 92px 0 42px;
+      padding: 56px 0 34px;
       overflow: hidden;
     }
 
@@ -167,121 +190,9 @@
       width: 420px;
       height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(216, 197, 155, 0.24), rgba(216, 197, 155, 0));
+      background: radial-gradient(circle, rgba(216, 197, 155, 0.18), rgba(216, 197, 155, 0));
       pointer-events: none;
     }
-
-    .tree-growth {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .tree-side {
-      position: absolute;
-      top: -40px;
-      width: 780px;
-      height: 980px;
-      opacity: 0.34;
-    }
-
-    .tree-side.left { left: -250px; }
-    .tree-side.right { right: -250px; transform: scaleX(-1); }
-
-    .tree-trunk,
-    .tree-branch {
-      position: absolute;
-      background: rgba(24, 54, 40, 0.18);
-      border-radius: 999px;
-    }
-
-    .tree-trunk {
-      left: 50%;
-      bottom: 0;
-      width: 34px;
-      height: 640px;
-      transform: translateX(-50%);
-    }
-
-    .tree-branch.b1 { left: 390px; bottom: 470px; width: 260px; height: 16px; transform: rotate(-28deg); }
-    .tree-branch.b2 { left: 250px; bottom: 340px; width: 220px; height: 16px; transform: rotate(-42deg); }
-    .tree-branch.b3 { left: 425px; bottom: 300px; width: 220px; height: 16px; transform: rotate(22deg); }
-    .tree-branch.b4 { left: 418px; bottom: 560px; width: 210px; height: 16px; transform: rotate(32deg); }
-    .tree-branch.b5 { left: 320px; bottom: 610px; width: 180px; height: 14px; transform: rotate(-18deg); }
-    .tree-branch.b6 { left: 470px; bottom: 170px; width: 170px; height: 14px; transform: rotate(14deg); }
-
-    .grow-leaf {
-      position: absolute;
-      width: 72px;
-      height: 72px;
-      background: rgba(24, 54, 40, 0.24);
-      border-radius: 100% 0 100% 0;
-      transform: scale(0) rotate(var(--r, 0deg));
-      transform-origin: center;
-      animation: leafGrow 10s ease forwards;
-      box-shadow: 0 12px 20px rgba(24, 54, 40, 0.04);
-    }
-
-    .grow-leaf::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 5px;
-      bottom: 5px;
-      width: 2px;
-      background: rgba(24, 54, 40, 0.12);
-      transform: translateX(-50%) rotate(16deg);
-      border-radius: 999px;
-    }
-
-    .tree-side .l1 { left: 470px; bottom: 620px; animation-delay: 0.4s; }
-    .tree-side .l2 { left: 300px; bottom: 500px; width: 60px; height: 60px; animation-delay: 1.2s; }
-    .tree-side .l3 { left: 210px; bottom: 360px; width: 56px; height: 56px; animation-delay: 2s; }
-    .tree-side .l4 { left: 500px; bottom: 410px; width: 64px; height: 64px; animation-delay: 2.8s; }
-    .tree-side .l5 { left: 535px; bottom: 520px; width: 58px; height: 58px; animation-delay: 3.6s; }
-    .tree-side .l6 { left: 390px; bottom: 730px; width: 52px; height: 52px; animation-delay: 4.4s; }
-    .tree-side .l7 { left: 250px; bottom: 610px; width: 48px; height: 48px; animation-delay: 5.2s; }
-    .tree-side .l8 { left: 610px; bottom: 330px; width: 46px; height: 46px; animation-delay: 6s; }
-    .tree-side .l9 { left: 555px; bottom: 655px; width: 54px; height: 54px; animation-delay: 4.8s; }
-    .tree-side .l10 { left: 322px; bottom: 265px; width: 50px; height: 50px; animation-delay: 6.8s; }
-    .tree-side .l11 { left: 430px; bottom: 230px; width: 42px; height: 42px; animation-delay: 7.3s; }
-    .tree-side .l12 { left: 180px; bottom: 470px; width: 44px; height: 44px; animation-delay: 5.8s; }
-
-    .page-leaves {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .page-leaf {
-      position: absolute;
-      border-radius: 100% 0 100% 0;
-      background: rgba(24, 54, 40, 0.08);
-      box-shadow: 0 14px 28px rgba(24, 54, 40, 0.03);
-    }
-
-    .page-leaf.big1 { width: 110px; height: 110px; left: 4%; top: 38%; transform: rotate(-18deg); }
-    .page-leaf.big2 { width: 88px; height: 88px; right: 6%; top: 54%; transform: rotate(24deg); }
-    .page-leaf.big3 { width: 72px; height: 72px; left: 12%; top: 78%; transform: rotate(12deg); }
-    .page-leaf.big4 { width: 96px; height: 96px; right: 10%; top: 86%; transform: rotate(-22deg); }
-
-    .hero-sparkle-leaf {
-      position: absolute;
-      border-radius: 100% 0 100% 0;
-      background: rgba(24, 54, 40, 0.26);
-      z-index: 1;
-      box-shadow: 0 10px 18px rgba(24, 54, 40, 0.05);
-      animation: tinyLeafPulse 4s ease-in-out infinite;
-    }
-
-    .hero-sparkle-leaf.s1 { width: 22px; height: 22px; left: 27%; top: 112px; transform: rotate(-18deg); }
-    .hero-sparkle-leaf.s2 { width: 18px; height: 18px; right: 28%; top: 126px; transform: rotate(26deg); animation-delay: .8s; }
-    .hero-sparkle-leaf.s3 { width: 16px; height: 16px; left: 18%; top: 190px; transform: rotate(10deg); animation-delay: 1.4s; }
-    .hero-sparkle-leaf.s4 { width: 20px; height: 20px; right: 18%; top: 188px; transform: rotate(-20deg); animation-delay: 2s; }
 
     .hero-grid {
       position: relative;
@@ -301,33 +212,8 @@
       animation: fadeUp 0.85s ease both;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(24, 54, 40, 0.08);
-      color: rgba(24, 54, 40, 0.76);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 22px rgba(24, 54, 40, 0.05);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 100% 0 100% 0;
-      background: var(--forest);
-      transform: rotate(-22deg);
-    }
-
     h1 {
-      margin: 22px auto 18px;
+      margin: 0 auto 18px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: clamp(2.1rem, 3.6vw, 3.9rem);
       line-height: 0.95;
@@ -377,6 +263,37 @@
       background: rgba(255, 255, 255, 0.86);
       color: var(--forest);
       border: 1px solid rgba(24, 54, 40, 0.1);
+    }
+
+    .testimonial-strip {
+      padding: 6px 0 20px;
+    }
+
+    .testimonial-card {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(24, 54, 40, 0.08);
+      border-radius: 28px;
+      padding: 34px 32px;
+      box-shadow: 0 18px 36px rgba(24, 54, 40, 0.05);
+    }
+
+    .testimonial-quote {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.24rem, 1.9vw, 1.62rem);
+      line-height: 1.7;
+      color: var(--forest);
+      font-style: italic;
+    }
+
+    .testimonial-attribution {
+      margin-top: 18px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: rgba(24, 54, 40, 0.76);
     }
 
     .section-shell {
@@ -487,7 +404,6 @@
     .feature-list li:nth-child(2) { animation-delay: 0.16s; }
     .feature-list li:nth-child(3) { animation-delay: 0.24s; }
     .feature-list li:nth-child(4) { animation-delay: 0.32s; }
-    .feature-list li:nth-child(5) { animation-delay: 0.40s; }
 
     .feature-button {
       margin-top: 24px;
@@ -629,22 +545,6 @@
       }
     }
 
-    @keyframes leafGrow {
-      0%, 10% {
-        transform: scale(0) rotate(var(--r, 0deg));
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1) rotate(var(--r, 0deg));
-        opacity: 1;
-      }
-    }
-
-    @keyframes tinyLeafPulse {
-      0%, 100% { opacity: 0.2; transform: translateY(0) rotate(var(--rr, 0deg)); }
-      50% { opacity: 0.34; transform: translateY(6px) rotate(calc(var(--rr, 0deg) + 8deg)); }
-    }
-
     @media (max-width: 1180px) {
       .nav {
         grid-template-columns: 1fr;
@@ -670,16 +570,11 @@
       .cta-actions {
         justify-content: flex-start;
       }
-
-      .tree-side {
-        opacity: 0.12;
-        width: 180px;
-      }
     }
 
     @media (max-width: 820px) {
       .hero {
-        padding-top: 54px;
+        padding-top: 42px;
       }
 
       nav ul {
@@ -704,10 +599,6 @@
 
       .summary-grid {
         grid-template-columns: 1fr;
-      }
-
-      .tree-side {
-        display: none;
       }
     }
 
@@ -737,11 +628,13 @@
 </head>
 <body>
   <div class="page-leaves" aria-hidden="true">
-    <span class="page-leaf big1"></span>
-    <span class="page-leaf big2"></span>
-    <span class="page-leaf big3"></span>
-    <span class="page-leaf big4"></span>
+    <span class="page-leaf hero-left"></span>
+    <span class="page-leaf hero-right"></span>
+    <span class="page-leaf mid-left"></span>
+    <span class="page-leaf mid-right"></span>
+    <span class="page-leaf bottom-left"></span>
   </div>
+
   <header>
     <div class="container nav">
       <a href="index.html" class="brand-mark" style="text-decoration:none;">
@@ -767,59 +660,9 @@
 
   <main>
     <section class="hero">
-      <span class="hero-sparkle-leaf s1" style="--rr:-18deg;"></span>
-      <span class="hero-sparkle-leaf s2" style="--rr:26deg;"></span>
-      <span class="hero-sparkle-leaf s3" style="--rr:10deg;"></span>
-      <span class="hero-sparkle-leaf s4" style="--rr:-20deg;"></span>
-      <div class="tree-growth" aria-hidden="true">
-        <div class="tree-side left">
-          <div class="tree-trunk"></div>
-          <div class="tree-branch b1"></div>
-          <div class="tree-branch b2"></div>
-          <div class="tree-branch b3"></div>
-          <div class="tree-branch b4"></div>
-          <div class="tree-branch b5"></div>
-          <div class="tree-branch b6"></div>
-          <span class="grow-leaf l1" style="--r:-18deg;"></span>
-          <span class="grow-leaf l2" style="--r:12deg;"></span>
-          <span class="grow-leaf l3" style="--r:-32deg;"></span>
-          <span class="grow-leaf l4" style="--r:26deg;"></span>
-          <span class="grow-leaf l5" style="--r:38deg;"></span>
-          <span class="grow-leaf l6" style="--r:-8deg;"></span>
-          <span class="grow-leaf l7" style="--r:16deg;"></span>
-          <span class="grow-leaf l8" style="--r:30deg;"></span>
-          <span class="grow-leaf l9" style="--r:-12deg;"></span>
-          <span class="grow-leaf l10" style="--r:18deg;"></span>
-          <span class="grow-leaf l11" style="--r:28deg;"></span>
-          <span class="grow-leaf l12" style="--r:-26deg;"></span>
-        </div>
-        <div class="tree-side right">
-          <div class="tree-trunk"></div>
-          <div class="tree-branch b1"></div>
-          <div class="tree-branch b2"></div>
-          <div class="tree-branch b3"></div>
-          <div class="tree-branch b4"></div>
-          <div class="tree-branch b5"></div>
-          <div class="tree-branch b6"></div>
-          <span class="grow-leaf l1" style="--r:-18deg;"></span>
-          <span class="grow-leaf l2" style="--r:12deg;"></span>
-          <span class="grow-leaf l3" style="--r:-32deg;"></span>
-          <span class="grow-leaf l4" style="--r:26deg;"></span>
-          <span class="grow-leaf l5" style="--r:38deg;"></span>
-          <span class="grow-leaf l6" style="--r:-8deg;"></span>
-          <span class="grow-leaf l7" style="--r:16deg;"></span>
-          <span class="grow-leaf l8" style="--r:30deg;"></span>
-          <span class="grow-leaf l9" style="--r:-12deg;"></span>
-          <span class="grow-leaf l10" style="--r:18deg;"></span>
-          <span class="grow-leaf l11" style="--r:28deg;"></span>
-          <span class="grow-leaf l12" style="--r:-26deg;"></span>
-        </div>
-      </div>
-
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Communication. Leadership. Alignment.</span>
-          <h1>The best professional development doesn&apos;t feel like training. It feels like growth.</h1>
+          <h1>The best professional development doesn't feel like training. It feels like growth.</h1>
           <p>
             Olive Tree Consultants partners with educational institutions and organizations to design practical, research-informed development that builds capacity, strengthens communication, and supports long-term growth.
           </p>
@@ -827,6 +670,15 @@
             <a href="educational-consulting.html" class="btn btn-primary">Explore Educational Consulting</a>
             <a href="leadership-communication-consulting.html" class="btn btn-secondary">Explore Leadership &amp; Communication Consulting</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial-strip reveal" id="testimonial">
+      <div class="container">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">“We are grateful for Olive Tree's expertise and would highly recommend their services to any organization seeking meaningful and impactful professional learning.”</p>
+          <div class="testimonial-attribution">— Patrick Frerking, Principal, Concordia Lutheran High School</div>
         </div>
       </div>
     </section>
@@ -905,7 +757,7 @@
                 <li>Frontline leaders communicate priorities with greater clarity and less repetition</li>
                 <li>Messages translate consistently across organizational levels</li>
                 <li>Leaders handle questions, pushback, and high-visibility moments with confidence</li>
-                <li>Communication development is measurable. You&apos;ll know it&apos;s working</li>
+                <li>Communication development is measurable. You'll know it's working</li>
               </ul>
               <a href="leadership-communication-consulting.html" class="feature-button">Our Leadership &amp; Communication Consulting Services</a>
             </div>
@@ -918,7 +770,7 @@
       <div class="container">
         <div class="cta-shell">
           <div>
-            <h2>Let&apos;s strengthen your organization.</h2>
+            <h2>Let's strengthen your organization.</h2>
             <p>
               Contact Olive Tree Consultants today to start building clearer communication, stronger leadership, and growth that lasts.
             </p>
