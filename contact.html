@@ -268,6 +268,56 @@
         font-size: 2.1rem;
         max-width: 16ch;
       }
+
+      .brand-title-full { display: none; }
+      .brand-title-mobile { display: inline; }
+      .brand-sub { display: none; }
+
+      .desktop-nav,
+      .desktop-cta { display: none; }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      header.menu-open {
+        min-height: 100vh;
+        background: rgba(255, 253, 249, 0.72);
+        backdrop-filter: blur(22px);
+      }
+
+      header.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      header.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      header.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 18px;
+        padding: 24px 20px 40px;
+      }
+
+      header.menu-open .mobile-menu {
+        display: flex;
+      }
+    }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        max-width: 16ch;
+      }
     }
   </style>
 </head>
@@ -277,27 +327,43 @@
   <div class="bg-leaf l3"></div>
 
 <header>
-    <div class="container nav">
-      <a href="index.html" class="brand-mark">
-        <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <div class="brand-logo-fallback" aria-hidden="true"></div>
-        <div class="brand-text">
-          <div class="brand-title">Olive Tree Consultants</div>
-          <div class="brand-sub">Fort Wayne, Indiana</div>
+  <div class="container nav">
+    <a href="index.html" class="brand-mark">
+      <img src="images/olive-tree-logo.png" alt="Olive Tree Consultants logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+      <div class="brand-logo-fallback" aria-hidden="true"></div>
+      <div class="brand-text">
+        <div class="brand-title">
+          <span class="brand-title-full">Olive Tree Consultants</span>
+          <span class="brand-title-mobile">Olive Tree</span>
         </div>
-      </a>
+        <div class="brand-sub">Fort Wayne, Indiana</div>
+      </div>
+    </a>
 
-      <nav>
-        <ul>
-          <li><a href="educational-consulting.html">Educational Consulting</a></li>
-          <li><a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="educational-consulting.html">Educational Consulting</a></li>
+        <li><a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
 
-      <a href="contact.html" class="nav-cta">Schedule a Consultation</a>
-    </div>
-  </header>
+    <a href="contact.html" class="nav-cta desktop-cta">Schedule a Consultation</a>
+
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu">
+    <a href="educational-consulting.html">Educational Consulting</a>
+    <a href="leadership-communication-consulting.html">Leadership &amp; Communication Consulting</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="mobile-cta-link">Schedule a Consultation</a>
+  </div>
+</header>
 
 <main>
   <section class="hero">
@@ -318,8 +384,16 @@
 </main>
 
 <footer>
-  <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana</div>
+  <div class="container">© 2026 Olive Tree Consultants | Fort Wayne, Indiana | A Mahlan Media Website</div>
 </footer>
 
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const header = document.querySelector('header');
+
+  menuToggle.addEventListener('click', () => {
+    header.classList.toggle('menu-open');
+  });
+</script>
 </body>
 </html>
