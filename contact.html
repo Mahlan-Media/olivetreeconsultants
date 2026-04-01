@@ -97,6 +97,7 @@
     }
 
     .brand-text { line-height: 1.05; }
+
     .brand-title {
       font-size: 1.18rem;
       font-weight: 700;
@@ -105,13 +106,16 @@
       color: var(--forest);
       font-family: Arial, Helvetica, sans-serif;
     }
+
+    .brand-title-mobile { display: none; }
+
     .brand-sub {
       margin-top: 4px;
       font-size: 0.82rem;
       color: rgba(24, 54, 40, 0.68);
     }
 
-    nav ul {
+    .desktop-nav ul {
       list-style: none;
       display: flex;
       gap: 22px;
@@ -122,7 +126,7 @@
       flex-wrap: wrap;
     }
 
-    nav a {
+    .desktop-nav a {
       text-decoration: none;
       font-size: 0.93rem;
       font-weight: 600;
@@ -131,8 +135,8 @@
       white-space: nowrap;
     }
 
-    nav a:hover,
-    nav a.active {
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
       color: var(--forest);
       transform: translateY(-1px);
     }
@@ -154,6 +158,11 @@
     }
 
     .nav-cta:hover { transform: translateY(-2px); }
+
+    .menu-toggle,
+    .mobile-menu {
+      display: none;
+    }
 
     .hero {
       position: relative;
@@ -250,65 +259,107 @@
       }
 
       .brand-mark,
-      .nav-cta {
+      .desktop-cta {
         justify-self: center;
       }
     }
 
-    @media (max-width: 720px) {
-      .container {
-        width: min(100% - 24px, 1280px);
+    @media (max-width: 900px) {
+      .nav {
+        grid-template-columns: 1fr auto;
+        gap: 14px;
+        align-items: center;
       }
-
-      .hero {
-        padding-top: 54px;
-      }
-
-      h1 {
-        font-size: 2.1rem;
-        max-width: 16ch;
-      }
-
-      .brand-title-full { display: none; }
-      .brand-title-mobile { display: inline; }
-      .brand-sub { display: none; }
 
       .desktop-nav,
-      .desktop-cta { display: none; }
+      .desktop-cta {
+        display: none;
+      }
+
+      .brand-mark {
+        justify-self: start;
+      }
+
+      .brand-title-full {
+        display: none;
+      }
+
+      .brand-title-mobile {
+        display: inline;
+      }
+
+      .brand-sub {
+        display: none;
+      }
 
       .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
         display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--forest);
+        border-radius: 999px;
+      }
+
+      .mobile-menu {
+        display: none;
+        width: min(1280px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 12px 0 28px;
       }
 
       header.menu-open {
         min-height: 100vh;
         background: rgba(255, 253, 249, 0.72);
         backdrop-filter: blur(22px);
-      }
-
-      header.menu-open .menu-toggle span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-
-      header.menu-open .menu-toggle span:nth-child(2) {
-        opacity: 0;
-      }
-
-      header.menu-open .menu-toggle span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-
-      .mobile-menu {
-        display: none;
-        flex-direction: column;
-        gap: 18px;
-        padding: 24px 20px 40px;
+        -webkit-backdrop-filter: blur(22px);
       }
 
       header.menu-open .mobile-menu {
         display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .mobile-menu a {
+        text-decoration: none;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: var(--forest);
+      }
+
+      .mobile-cta-link {
+        margin-top: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--forest);
+        color: var(--cream);
+        width: fit-content;
       }
     }
+
+    @media (max-width: 720px) {
+      .container,
+      .mobile-menu {
+        width: min(100% - 24px, 1280px);
+      }
 
       .hero {
         padding-top: 54px;
@@ -391,9 +442,12 @@
   const menuToggle = document.querySelector('.menu-toggle');
   const header = document.querySelector('header');
 
-  menuToggle.addEventListener('click', () => {
-    header.classList.toggle('menu-open');
-  });
+  if (menuToggle && header) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
 </script>
 </body>
 </html>
