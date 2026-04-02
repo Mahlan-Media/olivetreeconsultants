@@ -255,73 +255,7 @@
       margin-bottom: 12px;
     }
 
-    .photo-strip {
-      padding: 24px 0 0;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .photo-card {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(24, 54, 40, 0.08);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 18px 36px rgba(24, 54, 40, 0.05);
-    }
-
-    .photo-wrap {
-      position: relative;
-      aspect-ratio: 4 / 3.2;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.58), transparent 18%),
-        linear-gradient(145deg, rgba(248,243,232,0.8), rgba(216,197,155,0.72));
-      padding: 18px;
-    }
-
-    .photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 18px;
-    }
-
-    .photo-fallback {
-      position: absolute;
-      inset: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      color: rgba(24, 54, 40, 0.64);
-      line-height: 1.7;
-      font-size: 0.96rem;
-      border-radius: 18px;
-    }
-
-    .photo-body {
-      padding: 18px 20px 22px;
-    }
-
-    .photo-body h3 {
-      margin: 0 0 8px;
-      font-size: 1.12rem;
-      font-weight: 800;
-      color: var(--forest);
-    }
-
-    .photo-body p {
-      margin: 0;
-      color: rgba(24, 54, 40, 0.74);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
-
+  
     .cta-band {
       padding: 24px 0 84px;
     }
@@ -673,44 +607,7 @@
       </div>
     </section>
 
-    <section class="photo-strip">
-      <div class="container">
-        <div class="photo-grid">
-          <article class="photo-card">
-            <div class="photo-wrap">
-              <img src="images/leadership-communication-consulting-1.jpg" alt="Leadership communication workshop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-1.jpg</strong></div>
-            </div>
-            <div class="photo-body">
-              <h3>Leadership Communication</h3>
-              <p>Use this space for a leadership workshop, team briefing, or communication training image.</p>
-            </div>
-          </article>
-
-          <article class="photo-card">
-            <div class="photo-wrap">
-              <img src="images/leadership-communication-consulting-2.jpg" alt="Executive communication meeting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-2.jpg</strong></div>
-            </div>
-            <div class="photo-body">
-              <h3>Executive Alignment</h3>
-              <p>Use this space for executive communication, all-hands messaging, or leadership strategy work.</p>
-            </div>
-          </article>
-
-          <article class="photo-card">
-            <div class="photo-wrap">
-              <img src="images/leadership-communication-consulting-3.jpg" alt="Organizational communication support" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-              <div class="photo-fallback" style="display:none;">Upload photo as<br /><strong>leadership-communication-consulting-3.jpg</strong></div>
-            </div>
-            <div class="photo-body">
-              <h3>Organizational Communication</h3>
-              <p>Use this space for employee engagement, production leadership, or communication coaching images.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    
 
     <section class="cta-band">
       <div class="container">
